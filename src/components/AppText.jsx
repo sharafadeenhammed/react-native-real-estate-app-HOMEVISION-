@@ -1,6 +1,14 @@
 import {StyleSheet, Text} from 'react-native';
 
-const AppText = ({children, text, style, color, fontSize, fontWeight}) => {
+const AppText = ({
+  onPress,
+  children,
+  text,
+  style,
+  color,
+  fontSize,
+  fontWeight,
+}) => {
   const styles = StyleSheet.create({
     text: {
       fontSize: fontSize || 14,
@@ -9,7 +17,11 @@ const AppText = ({children, text, style, color, fontSize, fontWeight}) => {
     },
   });
 
-  return (
+  return onPress ? (
+    <Text onPress={onPress} style={[styles.text, style]}>
+      {children} {text}
+    </Text>
+  ) : (
     <Text style={[styles.text, style]}>
       {children} {text}
     </Text>

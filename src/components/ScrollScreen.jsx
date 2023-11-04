@@ -3,9 +3,18 @@ import {StyleSheet, StatusBar, SafeAreaView, ScrollView} from 'react-native';
 import statusBar from '../config/statusBar';
 import colors from '../config/colors';
 
-const ScroolScreen = ({children, style, statusBarColor, statusBarStyle}) => {
+const ScroolScreen = ({
+  children,
+  style,
+  statusBarColor,
+  statusBarStyle,
+  ...others
+}) => {
   return (
-    <ScrollView style={[styles.container, style]}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={[styles.container, style]}
+      {...others}>
       <StatusBar
         animated={true}
         backgroundColor={statusBarColor || colors.neutral}
