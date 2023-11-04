@@ -1,0 +1,5 @@
+R58M414XAYY
+
+$ adb -s <device name> reverse tcp:8081 tcp:8081
+$ adb -s R58M414XAYY reverse tcp:8081 tcp:8081
+
