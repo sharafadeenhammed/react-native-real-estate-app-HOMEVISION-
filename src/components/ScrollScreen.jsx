@@ -3,7 +3,7 @@ import {StyleSheet, StatusBar, SafeAreaView, ScrollView} from 'react-native';
 import statusBar from '../config/statusBar';
 import colors from '../config/colors';
 
-const Screen = ({children, style, statusBarColor, statusBarStyle}) => {
+const ScroolScreen = ({children, style, statusBarColor, statusBarStyle}) => {
   return (
     <ScrollView style={[styles.container, style]}>
       <StatusBar
@@ -16,7 +16,7 @@ const Screen = ({children, style, statusBarColor, statusBarStyle}) => {
   );
 };
 
-export default Screen;
+export default ScroolScreen;
 
 const styles = StyleSheet.create({
   container: {
