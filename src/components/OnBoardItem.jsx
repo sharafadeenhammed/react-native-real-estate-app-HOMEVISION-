@@ -1,14 +1,15 @@
 import {StyleSheet, Image, View, Dimensions} from 'react-native';
 
+import colors from '../config/colors';
+import statusBar from '../config/statusBar';
 import Screen from './Screen';
 import AppText from './AppText';
-import colors from '../config/colors';
 import AppButton from './AppButton';
 import OnBoardProgress from './Carosel';
 const screenDimension = Dimensions.get('window');
 const OnBoardItem = ({item, navigation, onPress}) => {
   return (
-    <Screen statusBarColor={colors.gray} style={styles.container}>
+    <Screen style={styles.container}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={item.imageUri} />
       </View>

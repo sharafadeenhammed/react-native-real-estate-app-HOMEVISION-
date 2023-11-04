@@ -7,7 +7,7 @@ import colors from '../config/colors';
 
 const WelcomeScreen = () => {
   return (
-    <Screen statusBarColor={colors.gray} style={styles.container}>
+    <Screen style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
@@ -18,10 +18,6 @@ const WelcomeScreen = () => {
         <AppText style={styles.header}>What’s your role?</AppText>
         <AppText style={styles.tagLine}>Kindly select your role below</AppText>
       </View>
-      {/* <View style={styles.cursorContainer}>
-        <OnBoardProgress carosel={item.carosel} />
-      </View> */}
-
       <View style={styles.buttonContainer}>
         <AppButton
           text="SIGN UP AS A BUYER"

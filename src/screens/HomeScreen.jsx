@@ -1,11 +1,16 @@
 import {StyleSheet, ImageBackground, View, Image} from 'react-native';
+
+import statusBar from '../config/statusBar';
+import colors from '../config/colors';
 import AppButton from '../components/AppButton';
 import Screen from '../components/Screen';
-import colors from '../config/colors';
 
 const Home = () => {
   return (
-    <Screen statusBarColor={colors.gray} style={styles.container}>
+    <Screen
+      statusBarColor={colors.gray}
+      style={styles.container}
+      statusBarStyle={statusBar.darkBackground}>
       <ImageBackground
         source={require('../assets/background.jpg')}
         style={styles.imageBackground}>

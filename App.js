@@ -7,7 +7,7 @@ import RegisterScreen from './src/screens/RegisterScreen';
 import RootNavigation from './src/navigation/RootNavigation';
 
 function App() {
-  return <RootNavigation />;
+  return <RegisterScreen />;
 }
 
 export default App;

@@ -17,4 +17,11 @@ const AppTextInput = ({
 
 export default AppTextInput;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    borderRadius: 20,
+    borderWidth: 2,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+  },
+});

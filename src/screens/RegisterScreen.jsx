@@ -8,8 +8,19 @@ import AppTextInput from '../components/AppTextInput';
 
 const RegisterScreen = () => {
   return (
-    <Screen style={styles.container} statusBarColor={colors.light}>
-      <Text>RegisterScreen</Text>
+    <Screen style={styles.container}>
+      <AppText style={styles.placeholder} text="Username" />
+      <AppTextInput style={styles.input} text="hello" placeholder="username" />
+
+      <AppText style={styles.placeholder} text="Email" />
+      <AppTextInput
+        style={styles.input}
+        text="hello"
+        placeholder="@email.com"
+      />
+
+      <AppText style={styles.placeholder} text="Password" />
+      <AppTextInput text="hello" placeholder="@email.com" />
     </Screen>
   );
 };
@@ -18,8 +29,17 @@ export default RegisterScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.light,
+    backgroundColor: colors.neutral,
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 30,
   },
+  input: {
+    marginBottom: 30,
+  },
+  placeholder: {
+    color: colors.black,
+    fontSize: 25,
+    marginBottom: 5,
+  },
+  placeholderText: {},
 });
