@@ -14,18 +14,36 @@ const RegisterScreen = () => {
       <AppText
         style={styles.tagLine}
         text="Fill in the required details to get started"></AppText>
+
       <AppText style={styles.placeholder} text="Username" />
-      <AppTextInput style={styles.input} text="hello" placeholder="username" />
+      <AppTextInput
+        inputStyle={styles.input}
+        style={styles.inputContainer}
+        text="hello"
+        placeholder="username"
+      />
 
       <AppText style={styles.placeholder} text="Email" />
       <AppTextInput
-        style={styles.input}
+        inputStyle={styles.input}
+        style={styles.inputContainer}
         text="hello"
         placeholder="@email.com"
       />
 
       <AppText style={styles.placeholder} text="Password" />
-      <AppTextInput text="hello" placeholder="@email.com" />
+      <AppTextInput
+        inputStyle={styles.input}
+        style={styles.inputContainer}
+        text="hello"
+        placeholder="password"
+      />
+
+      <AppButton
+        style={styles.button}
+        textColor={colors.neutral}
+        text="CREATE ACCOUNT"
+      />
     </ScroolScreen>
   );
 };
@@ -33,6 +51,10 @@ const RegisterScreen = () => {
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
+  button: {
+    borderRadius: 20,
+    backgroundColor: colors.primary,
+  },
   container: {
     backgroundColor: colors.neutral,
     paddingHorizontal: 20,
@@ -44,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginBottom: 10,
   },
-  input: {
+  inputContainer: {
     marginBottom: 30,
   },
   placeholder: {
@@ -57,5 +79,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     marginBottom: 30,
+  },
+  input: {
+    fontSize: 20,
+    width: 'auto',
   },
 });
