@@ -6,10 +6,11 @@ import RegisterScreen from './src/screens/RegisterScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import ForgotPassswordScreen from './src/screens/ForgotPasswordScreen';
 import VerifyCodeScreen from './src/screens/VerifyCodeScreen';
+import ResetPasswordScreen from './src/screens/ResetPasswordScreen';
 import RootNavigation from './src/navigation/RootNavigation';
 
 function App() {
-  return <VerifyCodeScreen />;
+  return <ResetPasswordScreen />;
 }
 
 export default App;
