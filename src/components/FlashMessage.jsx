@@ -27,7 +27,7 @@ const FlashMessage = ({style, message, type}) => {
           color={colors.darkYellow}
           backgroundColor=""
         />
-        <Text style={styles.warningText}>FlashMessage</Text>
+        <Text style={styles.warningText}>{message}</Text>
       </View>
     );
 
