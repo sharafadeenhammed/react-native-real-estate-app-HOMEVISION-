@@ -16,7 +16,8 @@ const RegisterScreen = () => {
       <AppText style={styles.header} text="Create an account" />
       <AppText
         style={styles.tagLine}
-        text="Fill in the required details to get started"></AppText>
+        text="Fill in the required details to get started"
+      />
 
       <AppText style={styles.label} text="Username" />
       <AppTextInput

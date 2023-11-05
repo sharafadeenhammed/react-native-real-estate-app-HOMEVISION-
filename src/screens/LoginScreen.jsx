@@ -16,7 +16,8 @@ const LoginScreen = () => {
       <AppText style={styles.header} text="SIGN IN" />
       <AppText
         style={styles.tagLine}
-        text="Continue email and password or use social media "></AppText>
+        text="Continue email and password or use social media "
+      />
 
       <AppText style={styles.label} text="Email" />
       <AppTextInput
