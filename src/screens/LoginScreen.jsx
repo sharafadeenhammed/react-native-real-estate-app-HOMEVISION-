@@ -81,30 +81,30 @@ const LoginScreen = () => {
         <View style={styles.dividerLine} />
       </View>
 
-      <View style={styles.altternativeSignupContainer}>
+      <View style={styles.socialSigninContainer}>
         <Icon
-          style={styles.alternativeSignupItem}
+          style={styles.socialSigninItem}
           size={50}
           backgroundColor={colors.light}
           name="google"
           color={colors.black}
         />
         <Icon
-          style={styles.alternativeSignupItem}
+          style={styles.socialSigninItem}
           size={50}
           backgroundColor={colors.light}
           name="apple"
           color={colors.black}
         />
         <Icon
-          style={styles.alternativeSignupItem}
+          style={styles.socialSigninItem}
           size={50}
           backgroundColor={colors.light}
           name="facebook"
           color={colors.black}
         />
       </View>
-      <View style={styles.signinContainer}>
+      <View style={styles.signupContainer}>
         <AppText
           fontSize={18}
           color={colors.black}
@@ -125,14 +125,14 @@ const LoginScreen = () => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  altternativeSignupContainer: {
+  socialSigninContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
     width: '100%',
     marginBottom: 10,
   },
-  alternativeSignupItem: {
+  socialSigninItem: {
     borderRadius: 10,
     backgroundColor: colors.neutral,
     borderColor: colors.black,
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     marginBottom: 5,
   },
-  signinContainer: {
+  signupContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: 30,

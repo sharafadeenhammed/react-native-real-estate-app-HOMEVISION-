@@ -80,23 +80,23 @@ const RegisterScreen = () => {
         <View style={styles.dividerLine} />
       </View>
 
-      <View style={styles.altternativeSignupContainer}>
+      <View style={styles.socialSignupContainer}>
         <Icon
-          style={styles.alternativeSignupItem}
+          style={styles.socialSignupItem}
           size={50}
           backgroundColor={colors.light}
           name="google"
           color={colors.black}
         />
         <Icon
-          style={styles.alternativeSignupItem}
+          style={styles.socialSignupItem}
           size={50}
           backgroundColor={colors.light}
           name="apple"
           color={colors.black}
         />
         <Icon
-          style={styles.alternativeSignupItem}
+          style={styles.socialSignupItem}
           size={50}
           backgroundColor={colors.light}
           name="facebook"
@@ -124,14 +124,14 @@ const RegisterScreen = () => {
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
-  altternativeSignupContainer: {
+  socialSignupContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
     width: '100%',
     marginBottom: 10,
   },
-  alternativeSignupItem: {
+  socialSignupItem: {
     borderRadius: 10,
     backgroundColor: colors.neutral,
     borderColor: colors.black,
