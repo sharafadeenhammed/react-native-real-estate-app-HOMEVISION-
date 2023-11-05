@@ -8,7 +8,7 @@ import ForgotPassswordScreen from './src/screens/ForgotPasswordScreen';
 import RootNavigation from './src/navigation/RootNavigation';
 
 function App() {
-  return <LoginScreen />;
+  return <ForgotPassswordScreen />;
 }
 
 export default App;
