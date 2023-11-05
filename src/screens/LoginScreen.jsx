@@ -16,23 +16,21 @@ const LoginScreen = () => {
       <AppText style={styles.header} text="SIGN IN" />
       <AppText
         style={styles.tagLine}
-        text="Continue mail and password or use social media "></AppText>
+        text="Continue email and password or use social media "></AppText>
 
-      <AppText style={styles.placeholder} text="Email" />
+      <AppText style={styles.label} text="Email" />
       <AppTextInput
         inputStyle={styles.input}
         style={styles.inputContainer}
-        text="hello"
         keyboardType="email-address"
         placeholder="@email.com"
       />
 
-      <AppText style={styles.placeholder} text="Password" />
+      <AppText style={styles.label} text="Password" />
       <AppTextInput
         style={{...styles.inputContainer, marginBottom: 5}}
         inputStyle={{...styles.input, ...styles.passwordInput}}
         secureTextEntry={!showPassword}
-        text="hello"
         placeholder="password"
         cursorColor={colors.black}
         LeftComponent={
@@ -56,18 +54,20 @@ const LoginScreen = () => {
         }
       />
       <AppText
-        onPress={() => console.log('handle navigation to signup screen...')}
+        onPress={() =>
+          console.log('handle navigation to forget password screen...')
+        }
         fontSize={18}
         fontWeight="700"
         color={colors.blue}
-        text="Forgot Password"
+        text="Forgot Password?"
         style={styles.forgotPassword}
       />
 
       <AppButton
         style={styles.button}
         textColor={colors.neutral}
-        text="CREATE ACCOUNT"
+        text="SIGN IN"
       />
       <View style={styles.divider}>
         <View style={styles.dividerLine} />
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.5,
   },
   forgotPassword: {
-    textAlign: 'left',
+    textAlign: 'right',
     width: '100%',
     marginBottom: 20,
   },
@@ -174,9 +174,10 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 20,
   },
-  placeholder: {
+  label: {
     color: colors.black,
     fontSize: 20,
+    fontWeight: '300',
     marginBottom: 5,
   },
   signinContainer: {

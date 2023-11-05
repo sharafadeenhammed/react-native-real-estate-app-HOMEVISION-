@@ -18,15 +18,14 @@ const RegisterScreen = () => {
         style={styles.tagLine}
         text="Fill in the required details to get started"></AppText>
 
-      <AppText style={styles.placeholder} text="Username" />
+      <AppText style={styles.label} text="Username" />
       <AppTextInput
         inputStyle={styles.input}
         style={styles.inputContainer}
-        text="hello"
         placeholder="username"
       />
 
-      <AppText style={styles.placeholder} text="Email" />
+      <AppText style={styles.label} text="Email" />
       <AppTextInput
         inputStyle={styles.input}
         style={styles.inputContainer}
@@ -35,7 +34,7 @@ const RegisterScreen = () => {
         placeholder="@email.com"
       />
 
-      <AppText style={styles.placeholder} text="Password" />
+      <AppText style={styles.label} text="Password" />
       <AppTextInput
         inputStyle={{...styles.input, ...styles.passwordInput}}
         style={styles.inputContainer}
@@ -169,10 +168,11 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 20,
   },
-  placeholder: {
+  label: {
     color: colors.black,
     fontSize: 20,
     marginBottom: 5,
+    fontWeight: '300',
   },
   signinContainer: {
     flexDirection: 'row',
