@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import * as yup from 'yup';
 
 import colors from '../config/colors';
