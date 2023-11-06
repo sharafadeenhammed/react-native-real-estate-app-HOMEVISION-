@@ -4,13 +4,12 @@ import * as yup from 'yup';
 
 import colors from '../config/colors';
 import ScroolScreen from '../components/ScrollScreen';
-import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
-import AppTextInput from '../components/AppTextInput';
 import Icon from '../components/Icon';
 import AppForm from '../components/AppForm';
 import FormTextInput from '../components/FormTextInput';
 import FormSubmitButton from '../components/FormSubmitButton';
+import FlashMessage from '../components/FlashMessage';
 
 const validationSchema = new yup.object({
   password: yup.string().required().min(8).label('Password'),
@@ -26,9 +25,14 @@ const initialValues = {password: '', confirmPassword: ''};
 const ResetPasswordScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const handleSubmit = (values, formikBag) => {
+  const [showError, setShowError] = useState(false);
+
+  const handleSubmit = async (values, formikBag) => {
+    if (values.password !== values.confirmPassword) return setShowError(true);
+    else setShowError(false);
     console.log('SUBMITTING FORM...');
     console.log('values: ', values);
+
     formikBag.resetForm();
   };
   return (
@@ -38,6 +42,9 @@ const ResetPasswordScreen = () => {
       validationSchema={validationSchema}>
       <ScroolScreen style={styles.container}>
         <AppText style={styles.header} text="New Password" />
+        {showError ? (
+          <FlashMessage type="error" message="passwords does not match !" />
+        ) : null}
 
         <AppText style={styles.label} text="Enter new password" />
         <FormTextInput
