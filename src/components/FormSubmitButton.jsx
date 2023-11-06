@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useFormikContext} from 'formik';
 
-const ForSubmitButton = ({
+const FormSubmitButton = ({
   style,
   textStyle,
   text,
@@ -36,4 +36,4 @@ const ForSubmitButton = ({
   );
 };
 
-export default ForSubmitButton;
+export default FormSubmitButton;
