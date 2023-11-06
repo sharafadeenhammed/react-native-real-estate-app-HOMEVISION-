@@ -1,13 +1,10 @@
-import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useState} from 'react';
 import * as yup from 'yup';
 
 import colors from '../config/colors';
-import Screen from '../components/Screen';
 import ScroolScreen from '../components/ScrollScreen';
-import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
-import AppTextInput from '../components/AppTextInput';
 import Icon from '../components/Icon';
 import AppForm from '../components/AppForm';
 import FormSubmitButton from '../components/FormSubmitButton';

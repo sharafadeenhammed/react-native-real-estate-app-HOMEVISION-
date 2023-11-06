@@ -1,124 +1,144 @@
-import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useState} from 'react';
+import * as yup from 'yup';
 
 import colors from '../config/colors';
-import Screen from '../components/Screen';
 import ScroolScreen from '../components/ScrollScreen';
-import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
-import AppTextInput from '../components/AppTextInput';
 import Icon from '../components/Icon';
+import AppForm from '../components/AppForm';
+import FormSubmitButton from '../components/FormSubmitButton';
+import FormTextInput from '../components/FormTextInput';
+
+const validationSchema = yup.object({
+  password: yup.string().required().min(8).label('Address'),
+  email: yup.string().email().required().label('Email'),
+});
+
+const initialValues = {name: '', password: ''};
 
 const LoginScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const handleSubmit = (values, formikBag) => {
+    console.log('SUBMITTING FORM!');
+    console.log('values: ', values);
+    formikBag.resetForm();
+  };
   return (
-    <ScroolScreen style={styles.container}>
-      <AppText style={styles.header} text="SIGN IN" />
-      <AppText
-        style={styles.tagLine}
-        text="Continue email and password or use social media "
-      />
-
-      <AppText style={styles.label} text="Email" />
-      <AppTextInput
-        inputStyle={styles.input}
-        style={styles.inputContainer}
-        keyboardType="email-address"
-        placeholder="@email.com"
-      />
-
-      <AppText style={styles.label} text="Password" />
-      <AppTextInput
-        style={{...styles.inputContainer, marginBottom: 5}}
-        inputStyle={{...styles.input, ...styles.passwordInput}}
-        secureTextEntry={!showPassword}
-        placeholder="password"
-        cursorColor={colors.black}
-        LeftComponent={
-          showPassword ? (
-            <Icon
-              name="eye-slash"
-              color={colors.black}
-              size={40}
-              backgroundColor={colors.light}
-              onPress={() => setShowPassword(false)}
-            />
-          ) : (
-            <Icon
-              name="eye"
-              size={40}
-              backgroundColor={colors.light}
-              color={colors.black}
-              onPress={() => setShowPassword(true)}
-            />
-          )
-        }
-      />
-      <AppText
-        onPress={() =>
-          console.log('handle navigation to forget password screen...')
-        }
-        fontSize={18}
-        fontWeight="700"
-        color={colors.blue}
-        text="Forgot Password?"
-        style={styles.forgotPassword}
-      />
-
-      <AppButton
-        style={styles.button}
-        textColor={colors.neutral}
-        text="SIGN IN"
-      />
-      <View style={styles.divider}>
-        <View style={styles.dividerLine} />
+    <AppForm
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}>
+      <ScroolScreen style={styles.container}>
+        <AppText style={styles.header} text="SIGN IN" />
         <AppText
-          text="OR"
-          fontSize={20}
-          fontWeight="500"
-          color={colors.black}
+          style={styles.tagLine}
+          text="Continue email and password or use social media "
         />
-        <View style={styles.dividerLine} />
-      </View>
 
-      <View style={styles.socialSigninContainer}>
-        <Icon
-          style={styles.socialSigninItem}
-          size={50}
-          backgroundColor={colors.light}
-          name="google"
-          color={colors.black}
+        <AppText style={styles.label} text="Email" />
+        <FormTextInput
+          name="email"
+          inputStyle={styles.input}
+          style={styles.inputContainer}
+          keyboardType="email-address"
+          placeholder="@email.com"
         />
-        <Icon
-          style={styles.socialSigninItem}
-          size={50}
-          backgroundColor={colors.light}
-          name="apple"
-          color={colors.black}
-        />
-        <Icon
-          style={styles.socialSigninItem}
-          size={50}
-          backgroundColor={colors.light}
-          name="facebook"
-          color={colors.black}
-        />
-      </View>
-      <View style={styles.signupContainer}>
-        <AppText
-          fontSize={18}
-          color={colors.black}
-          text="Don't have an account yet?"
+
+        <AppText style={styles.label} text="Password" />
+        <FormTextInput
+          name="password"
+          style={{...styles.inputContainer, marginBottom: 5}}
+          inputStyle={{...styles.input, ...styles.passwordInput}}
+          secureTextEntry={!showPassword}
+          placeholder="password"
+          cursorColor={colors.black}
+          RightComponent={
+            showPassword ? (
+              <Icon
+                name="eye-slash"
+                color={colors.black}
+                size={40}
+                backgroundColor={colors.light}
+                onPress={() => setShowPassword(false)}
+              />
+            ) : (
+              <Icon
+                name="eye"
+                size={40}
+                backgroundColor={colors.light}
+                color={colors.black}
+                onPress={() => setShowPassword(true)}
+              />
+            )
+          }
         />
         <AppText
-          onPress={() => console.log('handle navigation to signup screen...')}
+          onPress={() =>
+            console.log('handle navigation to forget password screen...')
+          }
           fontSize={18}
           fontWeight="700"
           color={colors.blue}
-          text="Sign up"
+          text="Forgot Password?"
+          style={styles.forgotPassword}
         />
-      </View>
-    </ScroolScreen>
+
+        <FormSubmitButton
+          style={styles.button}
+          textColor={colors.neutral}
+          text="SIGN IN"
+        />
+        <View style={styles.divider}>
+          <View style={styles.dividerLine} />
+          <AppText
+            text="OR"
+            fontSize={20}
+            fontWeight="500"
+            color={colors.black}
+          />
+          <View style={styles.dividerLine} />
+        </View>
+
+        <View style={styles.socialSigninContainer}>
+          <Icon
+            style={styles.socialSigninItem}
+            size={50}
+            backgroundColor={colors.light}
+            name="google"
+            color={colors.black}
+          />
+          <Icon
+            style={styles.socialSigninItem}
+            size={50}
+            backgroundColor={colors.light}
+            name="apple"
+            color={colors.black}
+          />
+          <Icon
+            style={styles.socialSigninItem}
+            size={50}
+            backgroundColor={colors.light}
+            name="facebook"
+            color={colors.black}
+          />
+        </View>
+        <View style={styles.signupContainer}>
+          <AppText
+            fontSize={18}
+            color={colors.black}
+            text="Don't have an account yet?"
+          />
+          <AppText
+            onPress={() => console.log('handle navigation to signup screen...')}
+            fontSize={18}
+            fontWeight="700"
+            color={colors.blue}
+            text="Sign up"
+          />
+        </View>
+      </ScroolScreen>
+    </AppForm>
   );
 };
 
@@ -173,13 +193,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   inputContainer: {
-    marginBottom: 20,
+    marginBottom: 5,
   },
   label: {
     color: colors.black,
+    marginBottom: 5,
     fontSize: 20,
     fontWeight: '300',
-    marginBottom: 5,
+    marginTop: 10,
   },
   signupContainer: {
     flexDirection: 'row',
