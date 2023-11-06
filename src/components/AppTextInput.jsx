@@ -1,9 +1,5 @@
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import colors from '../config/colors';
-import {useFormikContext} from 'formik';
-import FlashMessage from './FlashMessage';
-import {useEffect, useState} from 'react';
-import ScroolScreen from './ScrollScreen';
 
 const AppTextInput = ({
   RightComponent,
@@ -17,37 +13,12 @@ const AppTextInput = ({
   cursorColor = colors.black,
   ...others
 }) => {
-  const {
-    setFieldValue,
-    touched,
-    errors,
-    setFieldTouched,
-    values,
-    handleChange,
-  } = useFormikContext();
   return (
-    <ScroolScreen>
-      <View style={[styles.container, style]}>
-        {RightComponent ? RightComponent : null}
-        <TextInput
-          nativeID={name}
-          onChangeText={value => setFieldValue(name, value)}
-          onBlur={() => setFieldTouched(name, true)}
-          value={values[name]}
-          style={[styles.input, inputStyle]}
-          {...others}
-        />
-        {LeftComponent ? LeftComponent : null}
-      </View>
-
-      {errors[name] && touched[name] ? (
-        <FlashMessage
-          type="error"
-          style={styles.flashMessage}
-          message={errors[name]}
-        />
-      ) : null}
-    </ScroolScreen>
+    <View style={[styles.container, style]}>
+      {LeftComponent ? LeftComponent : null}
+      <TextInput style={[styles.input, inputStyle]} {...others} />
+      {RightComponent ? RightComponent : null}
+    </View>
   );
 };
 
@@ -70,6 +41,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   flashMessage: {
-    marginBottom: 5,
+    marginBottom: 20,
   },
 });

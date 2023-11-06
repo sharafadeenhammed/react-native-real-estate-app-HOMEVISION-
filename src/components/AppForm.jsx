@@ -5,10 +5,10 @@ import ScroolScreen from './ScrollScreen';
 const AppForm = ({children, initialValues, validationSchema, onSubmit}) => {
   return (
     <Formik
-      onSubmit={values => console.log('submitting form\n', 'values: ', values)}
+      onSubmit={(values, formikBag) => onSubmit(values, formikBag)}
       initialValues={initialValues}
       validationSchema={validationSchema}>
-      {({handleSubmit}) => children}
+      {() => children}
     </Formik>
   );
 };

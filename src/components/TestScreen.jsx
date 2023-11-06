@@ -8,6 +8,7 @@ import AppForm from './AppForm';
 import AppTextInput from './AppTextInput';
 import AppText from './AppText';
 import AppButton from './AppButton';
+import FormSubmitButton from './FormSubmitButton';
 AppForm;
 
 const validationSchema = yup.object({
@@ -18,19 +19,30 @@ const validationSchema = yup.object({
 
 const initialValues = {name: '', address: '', email: ''};
 
-const TestScreen = ({handleSubmit}) => {
+const TestScreen = ({}) => {
+  const handleSubmit = (values, formikBag) => {
+    console.log('SUBMITTING FORM!');
+    console.log('values: ', values);
+    formikBag.resetForm();
+  };
   return (
-    <AppForm validationSchema={validationSchema} initialValues={initialValues}>
+    <AppForm
+      onSubmit={handleSubmit}
+      validationSchema={validationSchema}
+      initialValues={initialValues}>
       <ScroolScreen style={styles.container}>
         <AppText text="Name" style={styles.label} />
         <AppTextInput name="name" placeholder="name" />
         <AppText text="Email" style={styles.label} />
-        <AppTextInput name="email" placeholder="email" />
+        <AppTextInput
+          keyboardType="email-address"
+          name="email"
+          placeholder="email"
+        />
         <AppText text="Address" style={styles.label} />
         <AppTextInput name="address" placeholder="address" />
-        <AppButton
+        <FormSubmitButton
           text="submit"
-          onPress={() => console.log('submit form')}
           textColor={colors.neutral}
           style={styles.button}
         />

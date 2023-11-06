@@ -1,14 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useFormikContext} from 'formik';
 
-const FormSubmitButton = ({
-  style,
-  textStyle,
-  text,
-  bgColor,
-  textColor,
-  onPress,
-}) => {
+const FormSubmitButton = ({style, textStyle, text, bgColor, textColor}) => {
   const {handleSubmit} = useFormikContext();
   const styles = StyleSheet.create({
     container: {
