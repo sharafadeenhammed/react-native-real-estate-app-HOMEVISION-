@@ -1,5 +1,6 @@
 import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 import {useState} from 'react';
+import * as yup from 'yup';
 
 import colors from '../config/colors';
 import Screen from '../components/Screen';
@@ -8,116 +9,139 @@ import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
 import AppTextInput from '../components/AppTextInput';
 import Icon from '../components/Icon';
+import AppForm from '../components/AppForm';
+import FormSubmitButton from '../components/FormSubmitButton';
+import FormTextInput from '../components/FormTextInput';
+
+const validationSchema = yup.object({
+  username: yup.string().required().min(2).label('Username'),
+  password: yup.string().required().min(8).label('Password'),
+  email: yup.string().email().required().label('Email'),
+});
+
+const initialValues = {username: '', password: '', email: ''};
 
 const RegisterScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const handleSubmit = (values, formikBag) => {
+    console.log('SUBMITTING FORM!');
+    console.log('values: ', values);
+    formikBag.resetForm();
+  };
   return (
-    <ScroolScreen style={styles.container}>
-      <AppText style={styles.header} text="Create an account" />
-      <AppText
-        style={styles.tagLine}
-        text="Fill in the required details to get started"
-      />
-
-      <AppText style={styles.label} text="Username" />
-      <AppTextInput
-        inputStyle={styles.input}
-        style={styles.inputContainer}
-        placeholder="username"
-      />
-
-      <AppText style={styles.label} text="Email" />
-      <AppTextInput
-        inputStyle={styles.input}
-        style={styles.inputContainer}
-        text="hello"
-        keyboardType="email-address"
-        placeholder="@email.com"
-      />
-
-      <AppText style={styles.label} text="Password" />
-      <AppTextInput
-        inputStyle={{...styles.input, ...styles.passwordInput}}
-        style={styles.inputContainer}
-        secureTextEntry={!showPassword}
-        text="hello"
-        placeholder="password"
-        cursorColor={colors.black}
-        LeftComponent={
-          showPassword ? (
-            <Icon
-              name="eye-slash"
-              color={colors.black}
-              size={40}
-              backgroundColor={colors.light}
-              onPress={() => setShowPassword(false)}
-            />
-          ) : (
-            <Icon
-              name="eye"
-              size={40}
-              backgroundColor={colors.light}
-              color={colors.black}
-              onPress={() => setShowPassword(true)}
-            />
-          )
-        }
-      />
-
-      <AppButton
-        style={styles.button}
-        textColor={colors.neutral}
-        text="CREATE ACCOUNT"
-      />
-      <View style={styles.divider}>
-        <View style={styles.dividerLine} />
+    <AppForm
+      validationSchema={validationSchema}
+      initialValues={initialValues}
+      onSubmit={handleSubmit}>
+      <ScroolScreen style={styles.container}>
+        <AppText style={styles.header} text="Create an account" />
         <AppText
-          text="OR"
-          fontSize={20}
-          fontWeight="500"
-          color={colors.black}
+          style={styles.tagLine}
+          text="Fill in the required details to get started"
         />
-        <View style={styles.dividerLine} />
-      </View>
 
-      <View style={styles.socialSignupContainer}>
-        <Icon
-          style={styles.socialSignupItem}
-          size={50}
-          backgroundColor={colors.light}
-          name="google"
-          color={colors.black}
+        <AppText style={styles.label} text="Username" />
+        <FormTextInput
+          name="username"
+          inputStyle={styles.input}
+          style={styles.inputContainer}
+          placeholder="username"
         />
-        <Icon
-          style={styles.socialSignupItem}
-          size={50}
-          backgroundColor={colors.light}
-          name="apple"
-          color={colors.black}
+
+        <AppText style={styles.label} text="Email" />
+        <FormTextInput
+          name="email"
+          inputStyle={styles.input}
+          style={styles.inputContainer}
+          text="hello"
+          keyboardType="email-address"
+          placeholder="@email.com"
         />
-        <Icon
-          style={styles.socialSignupItem}
-          size={50}
-          backgroundColor={colors.light}
-          name="facebook"
-          color={colors.black}
+
+        <AppText style={styles.label} text="Password" />
+        <FormTextInput
+          name="password"
+          inputStyle={{...styles.input, ...styles.passwordInput}}
+          style={styles.inputContainer}
+          secureTextEntry={!showPassword}
+          placeholder="password"
+          cursorColor={colors.black}
+          RightComponent={
+            showPassword ? (
+              <Icon
+                name="eye-slash"
+                color={colors.black}
+                size={40}
+                backgroundColor={colors.light}
+                onPress={() => setShowPassword(false)}
+              />
+            ) : (
+              <Icon
+                name="eye"
+                size={40}
+                backgroundColor={colors.light}
+                color={colors.black}
+                onPress={() => setShowPassword(true)}
+              />
+            )
+          }
         />
-      </View>
-      <View style={styles.signinContainer}>
-        <AppText
-          fontSize={18}
-          color={colors.black}
-          text="Already have an account?"
+
+        <FormSubmitButton
+          style={styles.button}
+          textColor={colors.neutral}
+          text="CREATE ACCOUNT"
         />
-        <AppText
-          onPress={() => console.log('handle navigation to login screen...')}
-          fontSize={18}
-          fontWeight="700"
-          color={colors.blue}
-          text="Sign in"
-        />
-      </View>
-    </ScroolScreen>
+        <View style={styles.divider}>
+          <View style={styles.dividerLine} />
+          <AppText
+            text="OR"
+            fontSize={20}
+            fontWeight="500"
+            color={colors.black}
+          />
+          <View style={styles.dividerLine} />
+        </View>
+
+        <View style={styles.socialSignupContainer}>
+          <Icon
+            style={styles.socialSignupItem}
+            size={50}
+            backgroundColor={colors.light}
+            name="google"
+            color={colors.black}
+          />
+          <Icon
+            style={styles.socialSignupItem}
+            size={50}
+            backgroundColor={colors.light}
+            name="apple"
+            color={colors.black}
+          />
+          <Icon
+            style={styles.socialSignupItem}
+            size={50}
+            backgroundColor={colors.light}
+            name="facebook"
+            color={colors.black}
+          />
+        </View>
+        <View style={styles.signinContainer}>
+          <AppText
+            fontSize={18}
+            color={colors.black}
+            text="Already have an account?"
+          />
+          <AppText
+            onPress={() => console.log('handle navigation to login screen...')}
+            fontSize={18}
+            fontWeight="700"
+            color={colors.blue}
+            text="Sign in"
+          />
+        </View>
+      </ScroolScreen>
+    </AppForm>
   );
 };
 
@@ -167,13 +191,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   inputContainer: {
-    marginBottom: 20,
+    // marginBottom: 5,
   },
   label: {
     color: colors.black,
     fontSize: 20,
     marginBottom: 5,
     fontWeight: '300',
+    marginTop: 10,
   },
   signinContainer: {
     flexDirection: 'row',
