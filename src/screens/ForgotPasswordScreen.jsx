@@ -1,42 +1,60 @@
-import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
-import {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import * as yup from 'yup';
 
 import colors from '../config/colors';
-import Screen from '../components/Screen';
 import ScroolScreen from '../components/ScrollScreen';
-import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
-import AppTextInput from '../components/AppTextInput';
-import Icon from '../components/Icon';
+import FormSubmitButton from '../components/FormSubmitButton';
+import FormTextInput from '../components/FormTextInput';
+import AppForm from '../components/AppForm';
+
+const validationSchema = yup.object({
+  email: yup.string().email().required().label('Email'),
+});
+const initialValues = {email: ''};
 
 const ForgotPassswordScreen = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const handleSubmit = (values, formikBag) => {
+    console.log('SUBMITTING FORM!');
+    console.log('values: ', values);
+    formikBag.resetForm();
+  };
   return (
-    <ScroolScreen style={styles.container}>
-      <AppText style={styles.header} text="Forgot Password" />
-      <AppText
-        style={styles.tagLine}
-        text="Enter email address to continue password reset"
-      />
+    <AppForm
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}>
+      <ScroolScreen style={styles.container}>
+        <AppText style={styles.header} text="Forgot Password" />
+        <AppText
+          style={styles.tagLine}
+          text="Enter email address to continue password reset"
+        />
 
-      <AppText style={styles.label} text="Email" />
-      <AppTextInput
-        inputStyle={styles.input}
-        style={styles.inputContainer}
-        keyboardType="email-address"
-        placeholder="@email.com"
-      />
+        <AppText style={styles.label} text="Email" />
+        <FormTextInput
+          name="email"
+          inputStyle={styles.input}
+          style={styles.inputContainer}
+          keyboardType="email-address"
+          placeholder="@email.com"
+        />
 
-      <AppText
-        onPress={() => console.log('handle navigation to signin screen...')}
-        fontSize={18}
-        fontWeight="700"
-        color={colors.gray}
-        text="Sign In Instead"
-        style={styles.signInInstead}
-      />
-      <AppButton style={styles.button} textColor={colors.neutral} text="SEND" />
-    </ScroolScreen>
+        <AppText
+          onPress={() => console.log('handle navigation to signin screen...')}
+          fontSize={18}
+          fontWeight="700"
+          color={colors.gray}
+          text="Sign In Instead"
+          style={styles.signInInstead}
+        />
+        <FormSubmitButton
+          style={styles.button}
+          textColor={colors.neutral}
+          text="SEND"
+        />
+      </ScroolScreen>
+    </AppForm>
   );
 };
 
@@ -61,7 +79,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   inputContainer: {
-    marginBottom: 20,
+    marginBottom: 5,
   },
   label: {
     color: colors.black,
@@ -72,7 +90,7 @@ const styles = StyleSheet.create({
   signInInstead: {
     textAlign: 'center',
     width: '100%',
-    marginBottom: 20,
+    marginVertical: 20,
     textDecorationLine: 'underline',
   },
   tagLine: {
