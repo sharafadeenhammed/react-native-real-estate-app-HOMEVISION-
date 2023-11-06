@@ -2,24 +2,22 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Formik} from 'formik';
 
 import ScroolScreen from './ScrollScreen';
+import AppButton from './AppButton';
 const AppForm = ({children, initialValues, validationSchema, onSubmit}) => {
   return (
-    <ScroolScreen>
-      <Formik
-        onSubmit={(values, {formikBag}) => onSubmit()}
-        initialValues={initialValues}
-        validationSchema={validationSchema}>
-        {({
-          errors,
-          values,
-          touched,
-          setErrors,
-          setTouched,
-          setFieldValue,
-          setFieldTouched,
-        }) => children}
-      </Formik>
-    </ScroolScreen>
+    <Formik
+      onSubmit={values => console.log('submitting form\n', 'values: ', values)}
+      initialValues={initialValues}
+      validationSchema={validationSchema}>
+      {({handleSubmit}) => {
+        return (
+          <>
+            {children}
+            <AppButton text="submit" onPress={handleSubmit} />
+          </>
+        );
+      }}
+    </Formik>
   );
 };
 

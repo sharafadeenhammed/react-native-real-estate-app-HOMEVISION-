@@ -1,54 +1,60 @@
 import {StyleSheet, Text, View, Animated} from 'react-native';
-import {useRef, useEffect} from 'react';
+import * as yup from 'yup';
+import {useFormikContext} from 'formik';
+
+import ScroolScreen from './ScrollScreen';
+import colors from '../config/colors';
+import AppForm from './AppForm';
+import AppTextInput from './AppTextInput';
+import AppText from './AppText';
 import AppButton from './AppButton';
-import FlashMessage from './FlashMessage';
+AppForm;
 
-const TestScreen = () => {
-  const value = useRef(new Animated.Value(0)).current;
-  const animation = Animated.timing(value, {
-    toValue: 1,
-    duration: 3000,
-    useNativeDriver: true,
-  });
-  useEffect(() => {
-    animation.start();
-  }, [value]);
+const validationSchema = yup.object({
+  name: yup.string().required().min(2).label('Name'),
+  address: yup.string().required().min(10).label('Address'),
+  email: yup.string().email().required().label('Email'),
+});
+
+const initialValues = {name: '', address: '', email: ''};
+
+const TestScreen = ({handleSubmit}) => {
   return (
-    <Animated.View
-      style={{
-        width: '100%',
-        backgroundColor: 'gray',
-        flex: 1,
-        opacity: value,
-      }}>
-      <Text> Test animation... </Text>
-      <AppButton
-        text="reset"
-        onPress={() => {
-          value.setValue(0.8);
-          animation.start();
-        }}
-      />
-
-      <FlashMessage
-        type="error"
-        style={{marginVertical: 10}}
-        message="error texts"
-      />
-      <FlashMessage
-        type="warning"
-        style={{marginVertical: 10}}
-        message="warning texts"
-      />
-      <FlashMessage
-        type="success"
-        style={{marginVertical: 10}}
-        message="success texts"
-      />
-    </Animated.View>
+    <AppForm validationSchema={validationSchema} initialValues={initialValues}>
+      <ScroolScreen style={styles.container}>
+        <AppText text="Name" style={styles.label} />
+        <AppTextInput name="name" placeholder="name" />
+        <AppText text="Email" style={styles.label} />
+        <AppTextInput name="email" placeholder="email" />
+        <AppText text="Address" style={styles.label} />
+        <AppTextInput name="address" placeholder="address" />
+        <AppButton
+          text="submit"
+          onPress={() => console.log('submit form')}
+          textColor={colors.neutral}
+          style={styles.button}
+        />
+      </ScroolScreen>
+    </AppForm>
   );
 };
 
 export default TestScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 5,
+  },
+  button: {
+    borderRadius: 20,
+    marginVertical: 20,
+    backgroundColor: colors.primary,
+  },
+  label: {
+    color: colors.black,
+    fontSize: 20,
+    fontWeight: '300',
+    marginBottom: 5,
+    marginTop: 10,
+  },
+});

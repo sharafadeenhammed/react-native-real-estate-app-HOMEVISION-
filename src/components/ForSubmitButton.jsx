@@ -1,6 +1,15 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {useFormikContext} from 'formik';
 
-const AppButton = ({style, textStyle, text, bgColor, textColor, onPress}) => {
+const ForSubmitButton = ({
+  style,
+  textStyle,
+  text,
+  bgColor,
+  textColor,
+  onPress,
+}) => {
+  const {handleSubmit} = useFormikContext();
   const styles = StyleSheet.create({
     container: {
       padding: 10,
@@ -19,7 +28,7 @@ const AppButton = ({style, textStyle, text, bgColor, textColor, onPress}) => {
     <TouchableOpacity
       activeOpacity={0.8}
       style={[styles.container, style]}
-      onPress={onPress}>
+      onPress={handleSubmit}>
       <Text style={[styles.text, textStyle]}>
         {text ? text : 'button text'}
       </Text>
@@ -27,4 +36,4 @@ const AppButton = ({style, textStyle, text, bgColor, textColor, onPress}) => {
   );
 };
 
-export default AppButton;
+export default ForSubmitButton;
