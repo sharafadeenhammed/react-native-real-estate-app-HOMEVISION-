@@ -42,12 +42,10 @@ const VerifyCodeScreen = () => {
             if (value === '') return setFirstValue('');
             if (value.length > 1) {
               setFirstValue(value[1]);
-              // refs.forEach(item => item.current.blur());
               refs[1].current.focus();
               return;
             }
             setFirstValue(value);
-            // refs.forEach(item => item.current.blur());
             refs[1].current.focus();
           }}
           autoFocus
@@ -61,12 +59,10 @@ const VerifyCodeScreen = () => {
             if (value === '') return setSecondValue('');
             if (value.length > 1) {
               setSecondValue(value[1]);
-              // refs.forEach(item => item.current.blur());
               refs[2].current.focus();
               return;
             }
             setSecondValue(value);
-            // refs.forEach(item => item.current.blur());
             refs[2].current.focus();
           }}
           onKeyPress={({nativeEvent}) => {
@@ -83,7 +79,6 @@ const VerifyCodeScreen = () => {
             ) {
               setToPreviousInput(false);
               console.log('back space pressed going... 2');
-              // refs.forEach(item => item.current.blur());
               refs[0].current.focus();
             }
           }}
@@ -97,12 +92,10 @@ const VerifyCodeScreen = () => {
             if (value === '') return setThirdValue('');
             if (value.length > 1) {
               setThirdValue(value[1]);
-              // refs.forEach(item => item.current.blur());
               refs[3].current.focus();
               return;
             }
             setThirdValue(value);
-            // refs.forEach(item => item.current.blur());
             refs[3].current.focus();
           }}
           onKeyPress={({nativeEvent}) => {
@@ -119,7 +112,6 @@ const VerifyCodeScreen = () => {
             ) {
               console.log('back space pressed going... 3');
               setToPreviousInput(false);
-              // refs.forEach(item => item.current.blur());
               refs[1].current.focus();
             }
           }}
@@ -134,12 +126,10 @@ const VerifyCodeScreen = () => {
             if (value === '') return setFourthValue('');
             if (value.length > 1) {
               setFourthValue(value[1]);
-              // refs.forEach(item => item.current.blur());
               refs[4].current.focus();
               return;
             }
             setFourthValue(value);
-            // refs.forEach(item => item.current.blur());
             refs[4].current.focus();
           }}
           onKeyPress={({nativeEvent}) => {
@@ -156,7 +146,6 @@ const VerifyCodeScreen = () => {
             ) {
               setToPreviousInput(false);
               console.log('back space pressed going... 4');
-              // refs.forEach(item => item.current.blur());
               refs[2].current.focus();
             }
           }}
@@ -169,12 +158,10 @@ const VerifyCodeScreen = () => {
             if (value === '') return setFifthValue('');
             if (value.length > 1) {
               setFifthValue(value[1]);
-              // refs.forEach(item => item.current.blur());
               refs[5].current.focus();
               return;
             }
             setFifthValue(value);
-            // refs.forEach(item => item.current.blur());
             refs[5].current.focus();
           }}
           onKeyPress={({nativeEvent}) => {
@@ -191,7 +178,6 @@ const VerifyCodeScreen = () => {
             ) {
               setToPreviousInput(false);
               console.log('back space pressed going... 5');
-              // refs.forEach(item => item.current.blur());
               refs[3].current.focus();
             }
           }}
@@ -220,7 +206,6 @@ const VerifyCodeScreen = () => {
             ) {
               console.log('back space pressed going... 6');
               setToPreviousInput(false);
-              // refs.forEach(item => item.current.blur());
               refs[4].current.focus();
             }
           }}
