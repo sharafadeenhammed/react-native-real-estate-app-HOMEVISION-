@@ -10,7 +10,7 @@ import ResetPasswordScreen from './src/screens/ResetPasswordScreen';
 import RootNavigation from './src/navigation/RootNavigation';
 
 function App() {
-  return <ResetPasswordScreen />;
+  return <VerifyCodeScreen />;
 }
 
 export default App;

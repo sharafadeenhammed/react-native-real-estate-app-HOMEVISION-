@@ -11,11 +11,11 @@ import FormSubmitButton from '../components/FormSubmitButton';
 import FormTextInput from '../components/FormTextInput';
 
 const validationSchema = yup.object({
-  password: yup.string().required().min(8).label('Address'),
+  password: yup.string().required().min(8).label('Password'),
   email: yup.string().email().required().label('Email'),
 });
 
-const initialValues = {name: '', password: ''};
+const initialValues = {email: '', password: ''};
 
 const LoginScreen = () => {
   const [showPassword, setShowPassword] = useState(false);

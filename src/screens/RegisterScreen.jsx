@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 20,
     backgroundColor: colors.primary,
-    marginBottom: 20,
+    marginVertical: 20,
   },
   container: {
     backgroundColor: colors.neutral,

@@ -10,13 +10,18 @@ const AppTextInput = ({
   iconName,
   iconColor,
   inputStyle,
+  fieldRef,
   cursorColor = colors.black,
   ...others
 }) => {
   return (
     <View style={[styles.container, style]}>
       {LeftComponent ? LeftComponent : null}
-      <TextInput style={[styles.input, inputStyle]} {...others} />
+      <TextInput
+        ref={fieldRef}
+        style={[styles.input, inputStyle]}
+        {...others}
+      />
       {RightComponent ? RightComponent : null}
     </View>
   );
