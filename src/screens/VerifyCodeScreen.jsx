@@ -11,204 +11,135 @@ import FlashMessage from '../components/FlashMessage';
 const VerifyCodeScreen = () => {
   const [showError, setShowError] = useState(false);
   const [toPreviousInput, setToPreviousInput] = useState(false);
-  const [firstValue, setFirstValue] = useState('');
-  const [secondValue, setSecondValue] = useState('');
-  const [thirdValue, setThirdValue] = useState('');
-  const [fourthValue, setFourthValue] = useState('');
-  const [fifthValue, setFifthValue] = useState('');
-  const [sixthValue, setSixthValue] = useState('');
+  const [inputValues, setInputValues] = useState(['', '', '', '', '', '']);
   const refs = [useRef(), useRef(), useRef(), useRef(), useRef(), useRef()];
+
   const handleSubmit = () => {
-    const password =
-      firstValue +
-      secondValue +
-      thirdValue +
-      fourthValue +
-      fifthValue +
-      sixthValue;
     setShowError(false);
-    if (password.length < 6) return setShowError(true);
+    const password = inputValues.join('');
     console.log(password);
+    if (password.length < 6) return setShowError(true);
   };
+
+  // function delegated to text change event
+  const handleChangeText = (value, currentInputIndex, isToNextInput) => {
+    if (value === '')
+      return setInputValues(initialValues => {
+        const currentValues = [...initialValues];
+        currentValues[currentInputIndex] = '';
+        return currentValues;
+      });
+    if (value.length > 1) {
+      setInputValues(initialValues => {
+        const currentValues = [...initialValues];
+        currentValues[currentInputIndex] = value[value.length - 1];
+        return currentValues;
+      });
+      setToPreviousInput(false);
+      isToNextInput && refs[currentInputIndex + 1].current.focus();
+      return;
+    }
+    setInputValues(initialValues => {
+      const currentValues = [...initialValues];
+      currentValues[currentInputIndex] = value;
+      return currentValues;
+    });
+    setToPreviousInput(false);
+    isToNextInput && refs[currentInputIndex + 1].current.focus();
+  };
+
+  // function delegated to key press event
+  const handleKeyPressed = (nativeEvent, currentInputIndex, isToPrevInput) => {
+    if (isToPrevInput == false) return;
+    if (
+      nativeEvent.key == 'Backspace' &&
+      inputValues[currentInputIndex] === '' &&
+      !toPreviousInput
+    )
+      return setToPreviousInput(true);
+    if (
+      nativeEvent.key == 'Backspace' &&
+      inputValues[currentInputIndex] === '' &&
+      toPreviousInput
+    ) {
+      setToPreviousInput(false);
+      console.log('back space pressed going... 2');
+      refs[currentInputIndex - 1].current.focus();
+    }
+  };
+
+  // function delegated to input focus event
+  const handleFocus = currentInputIndex => {
+    if (inputValues[currentInputIndex] === '') return setToPreviousInput(true);
+    setToPreviousInput(false);
+  };
+
   return (
     <ScroolScreen style={styles.container}>
       <AppText style={styles.header} text="Verification" />
       <AppText style={styles.tagLine} text="Enter verification code" />
       <View style={styles.codeContainer}>
+        {/* first input value */}
         <AppTextInput
           fieldRef={refs[0]}
-          value={firstValue}
-          onChangeText={value => {
-            if (value === '') return setFirstValue('');
-            if (value.length > 1) {
-              setFirstValue(value[1]);
-              refs[1].current.focus();
-              return;
-            }
-            setFirstValue(value);
-            refs[1].current.focus();
-          }}
+          value={inputValues[0]}
+          onChangeText={value => handleChangeText(value, 0, true)}
           autoFocus
           inputStyle={styles.input}
           style={styles.inputContainer}
         />
+
+        {/* second input value */}
         <AppTextInput
           fieldRef={refs[1]}
-          value={secondValue}
-          onChangeText={value => {
-            if (value === '') return setSecondValue('');
-            if (value.length > 1) {
-              setSecondValue(value[1]);
-              refs[2].current.focus();
-              return;
-            }
-            setSecondValue(value);
-            refs[2].current.focus();
-          }}
-          onKeyPress={({nativeEvent}) => {
-            if (
-              nativeEvent.key == 'Backspace' &&
-              secondValue === '' &&
-              !toPreviousInput
-            )
-              return setToPreviousInput(true);
-            if (
-              nativeEvent.key == 'Backspace' &&
-              secondValue === '' &&
-              toPreviousInput
-            ) {
-              setToPreviousInput(false);
-              console.log('back space pressed going... 2');
-              refs[0].current.focus();
-            }
-          }}
+          value={inputValues[1]}
+          onFocus={() => handleFocus(1)}
+          onChangeText={value => handleChangeText(value, 1, true)}
+          onKeyPress={({nativeEvent}) => handleKeyPressed(nativeEvent, 1, true)}
           inputStyle={styles.input}
           style={styles.inputContainer}
         />
+
+        {/* third input value */}
         <AppTextInput
           fieldRef={refs[2]}
-          value={thirdValue}
-          onChangeText={value => {
-            if (value === '') return setThirdValue('');
-            if (value.length > 1) {
-              setThirdValue(value[1]);
-              refs[3].current.focus();
-              return;
-            }
-            setThirdValue(value);
-            refs[3].current.focus();
-          }}
-          onKeyPress={({nativeEvent}) => {
-            if (
-              nativeEvent.key == 'Backspace' &&
-              thirdValue === '' &&
-              !toPreviousInput
-            )
-              return setToPreviousInput(true);
-            if (
-              nativeEvent.key == 'Backspace' &&
-              thirdValue === '' &&
-              toPreviousInput
-            ) {
-              console.log('back space pressed going... 3');
-              setToPreviousInput(false);
-              refs[1].current.focus();
-            }
-          }}
+          value={inputValues[2]}
+          onFocus={() => handleFocus(2)}
+          onChangeText={value => handleChangeText(value, 2, true)}
+          onKeyPress={({nativeEvent}) => handleKeyPressed(nativeEvent, 2, true)}
           inputStyle={styles.input}
           style={styles.inputContainer}
         />
+
+        {/* fourth input value */}
         <AppTextInput
           fieldRef={refs[3]}
-          value={fourthValue}
+          value={inputValues[3]}
           inputStyle={styles.input}
-          onChangeText={value => {
-            if (value === '') return setFourthValue('');
-            if (value.length > 1) {
-              setFourthValue(value[1]);
-              refs[4].current.focus();
-              return;
-            }
-            setFourthValue(value);
-            refs[4].current.focus();
-          }}
-          onKeyPress={({nativeEvent}) => {
-            if (
-              !toPreviousInput &&
-              nativeEvent.key == 'Backspace' &&
-              fourthValue === ''
-            )
-              return setToPreviousInput(true);
-            if (
-              nativeEvent.key == 'Backspace' &&
-              fourthValue === '' &&
-              toPreviousInput
-            ) {
-              setToPreviousInput(false);
-              console.log('back space pressed going... 4');
-              refs[2].current.focus();
-            }
-          }}
+          onFocus={() => handleFocus(3)}
+          onChangeText={value => handleChangeText(value, 3, true)}
+          onKeyPress={({nativeEvent}) => handleKeyPressed(nativeEvent, 3, true)}
           style={styles.inputContainer}
         />
+
+        {/* fifth input value */}
         <AppTextInput
           fieldRef={refs[4]}
-          value={fifthValue}
-          onChangeText={value => {
-            if (value === '') return setFifthValue('');
-            if (value.length > 1) {
-              setFifthValue(value[1]);
-              refs[5].current.focus();
-              return;
-            }
-            setFifthValue(value);
-            refs[5].current.focus();
-          }}
-          onKeyPress={({nativeEvent}) => {
-            if (
-              !toPreviousInput &&
-              nativeEvent.key == 'Backspace' &&
-              fifthValue === ''
-            )
-              return setToPreviousInput(true);
-            if (
-              nativeEvent.key == 'Backspace' &&
-              fifthValue === '' &&
-              toPreviousInput
-            ) {
-              setToPreviousInput(false);
-              console.log('back space pressed going... 5');
-              refs[3].current.focus();
-            }
-          }}
+          value={inputValues[4]}
+          onFocus={() => handleFocus(4)}
+          onChangeText={value => handleChangeText(value, 4, true)}
+          onKeyPress={({nativeEvent}) => handleKeyPressed(nativeEvent, 4, true)}
           inputStyle={styles.input}
           style={styles.inputContainer}
         />
+
+        {/* sixth input value */}
         <AppTextInput
           fieldRef={refs[5]}
-          value={sixthValue}
-          onChangeText={value => {
-            if (value === '') return setSixthValue('');
-            if (value.length > 1) return setSixthValue(value[1]);
-            setSixthValue(value);
-          }}
-          onKeyPress={({nativeEvent}) => {
-            if (
-              !toPreviousInput &&
-              nativeEvent.key == 'Backspace' &&
-              sixthValue === ''
-            )
-              return setToPreviousInput(true);
-            if (
-              nativeEvent.key == 'Backspace' &&
-              sixthValue === '' &&
-              toPreviousInput
-            ) {
-              console.log('back space pressed going... 6');
-              setToPreviousInput(false);
-              refs[4].current.focus();
-            }
-          }}
+          value={inputValues[5]}
+          onFocus={() => handleFocus(5)}
+          onChangeText={value => handleChangeText(value, 5, false)}
+          onKeyPress={({nativeEvent}) => handleKeyPressed(nativeEvent, 5, true)}
           inputStyle={styles.input}
           style={styles.inputContainer}
         />
