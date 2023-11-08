@@ -63,7 +63,6 @@ const VerifyCodeScreen = () => {
       toPreviousInput
     ) {
       setToPreviousInput(false);
-      console.log('back space pressed going... 2');
       refs[currentInputIndex - 1].current.focus();
     }
   };
