@@ -2,24 +2,27 @@ import {StyleSheet, View} from 'react-native';
 import {useState, useRef} from 'react';
 
 import colors from '../config/colors';
+import routes from '../config/routes';
 import ScroolScreen from '../components/ScrollScreen';
 import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
 import AppTextInput from '../components/AppTextInput';
 import FlashMessage from '../components/FlashMessage';
 
-const VerifyCodeScreen = () => {
+const VerifyCodeScreen = ({navigation}) => {
   const [showError, setShowError] = useState(false);
   const [toPreviousInput, setToPreviousInput] = useState(false);
   const [inputValues, setInputValues] = useState(['', '', '', '', '', '']);
   const refs = [useRef(), useRef(), useRef(), useRef(), useRef(), useRef()];
 
   const handleSubmit = () => {
+    // TODO: verify code
     setShowError(false);
     const code = inputValues.join('');
     if (code.length < 6) return setShowError(true);
     console.log('code: ', code);
     setInputValues(['', '', '', '', '', '']);
+    navigation.navigate(routes.NEW_PASSWORD);
   };
 
   // function delegated to text change event
@@ -149,7 +152,7 @@ const VerifyCodeScreen = () => {
       ) : null}
 
       <AppText
-        onPress={() => console.log('handle navigation to signin screen...')}
+        onPress={() => navigation.navigate(routes.LOGIN)}
         fontSize={18}
         fontWeight="700"
         color={colors.gray}

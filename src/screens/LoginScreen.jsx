@@ -21,6 +21,7 @@ const initialValues = {email: '', password: ''};
 const LoginScreen = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleSubmit = (values, formikBag) => {
+    // TODO login user
     console.log('SUBMITTING FORM!');
     console.log('values: ', values);
     formikBag.resetForm();

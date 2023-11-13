@@ -22,6 +22,7 @@ const initialValues = {username: '', password: '', email: ''};
 const RegisterScreen = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleSubmit = (values, formikBag) => {
+    // TODO register user
     console.log('SUBMITTING FORM!');
     console.log('values: ', values);
     formikBag.resetForm();

@@ -7,17 +7,20 @@ import AppText from '../components/AppText';
 import FormSubmitButton from '../components/FormSubmitButton';
 import FormTextInput from '../components/FormTextInput';
 import AppForm from '../components/AppForm';
+import routes from '../config/routes';
 
 const validationSchema = yup.object({
   email: yup.string().email().required().label('Email'),
 });
 const initialValues = {email: ''};
 
-const ForgotPassswordScreen = () => {
+const ForgotPassswordScreen = ({navigation}) => {
   const handleSubmit = (values, formikBag) => {
+    // TODO: make a password reset
     console.log('SUBMITTING FORM!');
     console.log('values: ', values);
     formikBag.resetForm();
+    navigation.navigate(routes.VERIFY_CODE);
   };
   return (
     <AppForm
@@ -41,7 +44,7 @@ const ForgotPassswordScreen = () => {
         />
 
         <AppText
-          onPress={() => console.log('handle navigation to signin screen...')}
+          onPress={() => navigation.navigate(routes.LOGIN)}
           fontSize={18}
           fontWeight="700"
           color={colors.gray}
