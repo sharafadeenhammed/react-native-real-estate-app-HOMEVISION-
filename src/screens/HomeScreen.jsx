@@ -12,12 +12,12 @@ const Home = () => {
       style={styles.container}
       statusBarStyle={statusBar.darkBackground}>
       <ImageBackground
-        source={require('../assets/background.jpg')}
+        source={require('../assets/onboard-image-4.png')}
         style={styles.imageBackground}>
         <View style={styles.headerContainer}>
           <Image
             style={styles.imageLogo}
-            source={require('../assets/home-image.png')}
+            source={require('../assets/onboard-image-4.png')}
           />
         </View>
         <View style={styles.buttonContainer}>

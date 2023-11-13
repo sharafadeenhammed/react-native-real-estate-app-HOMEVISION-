@@ -1,6 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import OnBoarding from '../screens/OnBoardScreen';
-import WelcomeScreen from '../screens/WelcomeScreen';
+import AuthNavigation from './AuthNavigation';
+import routes from '../config/routes';
 
 const Stack = createStackNavigator();
 export default function OnBoardingNavigation() {
@@ -8,10 +9,14 @@ export default function OnBoardingNavigation() {
     <Stack.Navigator>
       <Stack.Screen
         options={{headerShown: false}}
-        name="ONBOARDING"
+        name={routes.ONBOARDING}
         component={OnBoarding}
       />
-      <Stack.Screen name="WELCOME" component={WelcomeScreen} />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={routes.FINISH}
+        component={AuthNavigation}
+      />
     </Stack.Navigator>
   );
 }

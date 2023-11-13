@@ -4,14 +4,15 @@ import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
+import routes from '../config/routes';
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({navigation}) => {
   return (
     <Screen style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={require('../assets/onboard-image-4.jpeg')}
+          source={require('../assets/onboard-image-4.png')}
         />
       </View>
       <View style={styles.textContainer}>
@@ -30,6 +31,20 @@ const WelcomeScreen = () => {
           textColor={colors.primary}
         />
       </View>
+      <View style={styles.signinContainer}>
+        <AppText
+          fontSize={18}
+          color={colors.black}
+          text="Already have an account?"
+        />
+        <AppText
+          onPress={() => navigation.navigate(routes.LOGIN)}
+          fontSize={18}
+          fontWeight="700"
+          color={colors.blue}
+          text="Sign in"
+        />
+      </View>
     </Screen>
   );
 };
@@ -39,7 +54,7 @@ export default WelcomeScreen;
 const styles = StyleSheet.create({
   button: {
     borderRadius: 20,
-    marginVertical: 10,
+    marginVertical: 5,
     backgroundColor: colors.primary,
   },
   buttonContainer: {
@@ -72,7 +87,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   image: {
-    objectFit: 'cover',
+    objectFit: 'contain',
     height: '100%',
     width: '100%',
   },
@@ -90,5 +105,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.neutral,
     borderColor: colors.primary,
     borderWidth: 2,
+  },
+  signinContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 30,
   },
 });

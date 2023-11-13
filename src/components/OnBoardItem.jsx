@@ -1,12 +1,14 @@
 import {StyleSheet, Image, View, Dimensions} from 'react-native';
 
 import colors from '../config/colors';
-import statusBar from '../config/statusBar';
+import routes from '../config/routes';
 import Screen from './Screen';
 import AppText from './AppText';
 import AppButton from './AppButton';
 import OnBoardProgress from './Carosel';
+
 const screenDimension = Dimensions.get('window');
+
 const OnBoardItem = ({item, navigation, onPress}) => {
   return (
     <Screen style={styles.container}>
@@ -27,7 +29,7 @@ const OnBoardItem = ({item, navigation, onPress}) => {
           style={styles.button}
           textColor={colors.neutral}
           onPress={() => {
-            if (item.button.action) return navigation.navigate('WELCOME');
+            if (item.button.action) return navigation.navigate(routes.FINISH);
             onPress();
           }}
         />
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   image: {
-    objectFit: 'cover',
+    objectFit: 'contain',
     height: '100%',
     width: '100%',
   },

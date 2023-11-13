@@ -1,7 +1,7 @@
 export default Object.freeze([
   {
     id: 1,
-    imageUri: require('../assets/onboard-image-1.jpeg'),
+    imageUri: require('../assets/onboard-image-1.png'),
     heading: 'Welcome To Homevision',
     tagLine: 'Discover your dream property effortlessly with ease',
     button: {
@@ -11,7 +11,7 @@ export default Object.freeze([
   },
   {
     id: 2,
-    imageUri: require('../assets/onboard-image-2.jpeg'),
+    imageUri: require('../assets/onboard-image-2.png'),
     heading: ' Effortlessly browse properties with customizable filters.',
     tagLine:
       'Explore homes effortlessly using filters. Find your perfect property match with ease.',
@@ -22,7 +22,7 @@ export default Object.freeze([
   },
   {
     id: 3,
-    imageUri: require('../assets/onboard-image-3.jpeg'),
+    imageUri: require('../assets/onboard-image-3.png'),
     heading: ' Explore high-quality images',
     tagLine:
       'Save favorites, gain insights into and stay updated on market trends',

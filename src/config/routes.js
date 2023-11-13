@@ -1,0 +1,7 @@
+export default Object.freeze({
+  ONBOARDING: 'ONBOARDING',
+  FINISH: 'FINISH',
+  LOGIN: 'LOGIN',
+  REGISTER: 'REGISTER',
+  FORGOT_PASSWORD: 'FORGOT-PASSWORD',
+});

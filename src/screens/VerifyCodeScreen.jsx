@@ -16,9 +16,10 @@ const VerifyCodeScreen = () => {
 
   const handleSubmit = () => {
     setShowError(false);
-    const password = inputValues.join('');
-    console.log(password);
-    if (password.length < 6) return setShowError(true);
+    const code = inputValues.join('');
+    if (code.length < 6) return setShowError(true);
+    console.log('code: ', code);
+    setInputValues(['', '', '', '', '', '']);
   };
 
   // function delegated to text change event

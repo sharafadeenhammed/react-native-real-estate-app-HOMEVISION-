@@ -3,6 +3,7 @@ import {useState} from 'react';
 import * as yup from 'yup';
 
 import colors from '../config/colors';
+import routes from '../config/routes';
 import ScroolScreen from '../components/ScrollScreen';
 import AppText from '../components/AppText';
 import Icon from '../components/Icon';
@@ -17,7 +18,7 @@ const validationSchema = yup.object({
 
 const initialValues = {email: '', password: ''};
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleSubmit = (values, formikBag) => {
     console.log('SUBMITTING FORM!');
@@ -74,9 +75,7 @@ const LoginScreen = () => {
           }
         />
         <AppText
-          onPress={() =>
-            console.log('handle navigation to forget password screen...')
-          }
+          onPress={() => navigation.navigate(routes.FORGOT_PASSWORD)}
           fontSize={18}
           fontWeight="700"
           color={colors.blue}
@@ -130,7 +129,7 @@ const LoginScreen = () => {
             text="Don't have an account yet?"
           />
           <AppText
-            onPress={() => console.log('handle navigation to signup screen...')}
+            onPress={() => navigation.navigate(routes.REGISTER)}
             fontSize={18}
             fontWeight="700"
             color={colors.blue}
