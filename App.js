@@ -8,9 +8,11 @@ import ForgotPassswordScreen from './src/screens/ForgotPasswordScreen';
 import VerifyCodeScreen from './src/screens/VerifyCodeScreen';
 import ResetPasswordScreen from './src/screens/ResetPasswordScreen';
 import RootNavigation from './src/navigation/RootNavigation';
+import FeedScreen from './src/screens/FeedScreen';
+FeedScreen;
 
 function App() {
-  return <RootNavigation />;
+  return <FeedScreen />;
 }
 
 export default App;

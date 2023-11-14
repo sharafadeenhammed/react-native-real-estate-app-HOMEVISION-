@@ -67,3 +67,6 @@ yarn-error.log
 
 # custom metro bundeler
 metro/
+
+# unused assets
+/src/assets/unused-assets/*
