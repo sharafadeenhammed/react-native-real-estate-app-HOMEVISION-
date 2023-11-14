@@ -10,19 +10,26 @@ import AppTextInput from '../components/AppTextInput';
 import FlashMessage from '../components/FlashMessage';
 
 const VerifyCodeScreen = ({navigation}) => {
-  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMesssage] = useState('');
   const [toPreviousInput, setToPreviousInput] = useState(false);
   const [inputValues, setInputValues] = useState(['', '', '', '', '', '']);
   const refs = [useRef(), useRef(), useRef(), useRef(), useRef(), useRef()];
 
   const handleSubmit = () => {
+    setErrorMesssage('');
     // TODO: verify code
-    setShowError(false);
     const code = inputValues.join('');
-    if (code.length < 6) return setShowError(true);
+    if (code.length < 6)
+      return setErrorMesssage('Code must be at least 6 characters ');
+
     console.log('code: ', code);
     setInputValues(['', '', '', '', '', '']);
     navigation.navigate(routes.NEW_PASSWORD);
+  };
+
+  const requestNewCode = () => {
+    //TODO: request for a new code to be sent to user email
+    console.log('send new code to email...');
   };
 
   // function delegated to text change event
@@ -39,7 +46,6 @@ const VerifyCodeScreen = ({navigation}) => {
         currentValues[currentInputIndex] = value[value.length - 1];
         return currentValues;
       });
-      setToPreviousInput(false);
       isToNextInput && refs[currentInputIndex + 1].current.focus();
       return;
     }
@@ -48,7 +54,6 @@ const VerifyCodeScreen = ({navigation}) => {
       currentValues[currentInputIndex] = value;
       return currentValues;
     });
-    setToPreviousInput(false);
     isToNextInput && refs[currentInputIndex + 1].current.focus();
   };
 
@@ -147,18 +152,24 @@ const VerifyCodeScreen = ({navigation}) => {
           style={styles.inputContainer}
         />
       </View>
-      {showError ? (
-        <FlashMessage type="error" message="code must be at least 6 digit" />
+      {errorMessage !== '' ? (
+        <FlashMessage type="error" message={errorMessage} />
       ) : null}
 
-      <AppText
-        onPress={() => navigation.navigate(routes.LOGIN)}
-        fontSize={18}
-        fontWeight="700"
-        color={colors.gray}
-        text="Sign In Instead"
-        style={styles.signInInstead}
-      />
+      <View style={styles.signinContainer}>
+        <AppText
+          fontSize={18}
+          color={colors.black}
+          text="If you didn’t receive a code, "
+        />
+        <AppText
+          onPress={requestNewCode}
+          fontSize={18}
+          fontWeight="700"
+          color={colors.blue}
+          text="Resend"
+        />
+      </View>
       <AppButton
         onPress={handleSubmit}
         style={styles.button}
@@ -213,11 +224,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 1,
   },
-  signInInstead: {
-    textAlign: 'center',
-    width: '100%',
-    marginVertical: 30,
-    textDecorationLine: 'underline',
+  signinContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 30,
   },
   tagLine: {
     color: colors.dark,

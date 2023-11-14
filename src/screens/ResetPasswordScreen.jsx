@@ -28,6 +28,7 @@ const ResetPasswordScreen = () => {
   const [showError, setShowError] = useState(false);
 
   const handleSubmit = async (values, formikBag) => {
+    // TODO: reset user password to entered password
     if (values.password !== values.confirmPassword) return setShowError(true);
     else setShowError(false);
     console.log('SUBMITTING FORM...');

@@ -1,10 +1,10 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 
+import colors from '../config/colors';
+import routes from '../config/routes';
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import Screen from '../components/Screen';
-import colors from '../config/colors';
-import routes from '../config/routes';
 
 const WelcomeScreen = ({navigation}) => {
   return (
@@ -21,12 +21,14 @@ const WelcomeScreen = ({navigation}) => {
       </View>
       <View style={styles.buttonContainer}>
         <AppButton
+          onPress={() => navigation.navigate(routes.REGISTER)}
           text="SIGN UP AS A BUYER"
           style={styles.button}
           textColor={colors.neutral}
         />
         <AppButton
-          text="SIGN UP AS A SELLER"
+          text="SIGN UP AS AN AGENT"
+          onPress={() => navigation.navigate(routes.REGISTER)}
           style={{...styles.button, ...styles.sellerButton}}
           textColor={colors.primary}
         />
