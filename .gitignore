@@ -70,3 +70,5 @@ metro/
 
 # unused assets
 /src/assets/unused-assets/*
+
+index.css

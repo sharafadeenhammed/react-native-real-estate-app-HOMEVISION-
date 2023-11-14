@@ -23,7 +23,8 @@ const AppText = ({
     </Text>
   ) : (
     <Text style={[styles.text, style]}>
-      {children} {text}
+      {children}
+      {text}
     </Text>
   );
 };
