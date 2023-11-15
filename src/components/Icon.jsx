@@ -9,6 +9,7 @@ const Icon = ({
   backgroundColor = colors.neutral,
   name = 'eye',
   size = 30,
+  iconSizeMulitpier = 0.6,
   onPress,
   color = colors.neutral,
 }) => {
@@ -19,20 +20,28 @@ const Icon = ({
       height: size,
       width: size,
       backgroundColor: backgroundColor,
-      borderRadius: size / 2 || 25,
+      borderRadius: size / 2 || 15,
     },
   });
 
   return onPress ? (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.container, style]}>
-        <FontAwesome name={name} size={size * 0.6} color={color} />
+        <FontAwesome
+          name={name}
+          size={size * iconSizeMulitpier}
+          color={color}
+        />
       </View>
     </TouchableWithoutFeedback>
   ) : (
     <TouchableWithoutFeedback>
       <View style={[styles.container, style]}>
-        <FontAwesome name={name} size={size * 0.6} color={color} />
+        <FontAwesome
+          name={name}
+          size={size * iconSizeMulitpier}
+          color={color}
+        />
       </View>
     </TouchableWithoutFeedback>
   );

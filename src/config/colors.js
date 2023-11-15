@@ -15,7 +15,7 @@ export default Object.freeze({
   brightGreen: '#5af24a',
   darkGreen: '#234723',
   blue: '#1460ca',
-  lightBlue: '#afcaf0',
+  lightBlue: '#DEECFC',
   darkBlue: '#153766',
   red: '#a90c0c',
   lightRed: '#f4bcbc',
@@ -26,4 +26,5 @@ export default Object.freeze({
   darkYellow: '#64640f',
   brown: '#6f5829',
   orange: '#c6860f',
+  transparent: 'transparent',
 });

@@ -19,12 +19,12 @@ const AppText = ({
 
   return onPress ? (
     <Text onPress={onPress} style={[styles.text, style]}>
-      {children} {text}
+      {children}
+      {text}
     </Text>
   ) : (
     <Text style={[styles.text, style]}>
-      {children}
-      {text}
+      {children} {text}
     </Text>
   );
 };

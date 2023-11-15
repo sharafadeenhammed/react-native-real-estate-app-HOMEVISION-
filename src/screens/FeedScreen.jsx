@@ -1,11 +1,49 @@
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet, View, Image, FlatList} from 'react-native';
 import ScroolScreen from '../components/ScrollScreen';
+import {useEffect} from 'react';
+
 import colors from '../config/colors';
 import statusBar from '../config/statusBar';
+import topLocations from '../config/unused-data/topLocations';
+import nearbyItemsData from '../config/unused-data/nearbyItemsData';
+import recomendation from '../config/unused-data/recomendation';
 import AppText from '../components/AppText';
 import Icon from '../components/Icon';
+import AppTextInput from '../components/AppTextInput';
+import TopLoationItem from '../components/TopLoationItem';
+import ListingsITem from '../components/ListingsITem';
+import Recomendation from '../config/unused-data/recomendation';
+import RecomendeItem from '../components/RecomendeItem';
+import topRatedSeller from '../config/unused-data/topRatedSeller';
+import RatedSellerItem from '../components/RatedSellerItem';
 
-const FeedScreen = () => {
+const FeedScreen = ({navigation}) => {
+  useEffect(() => {
+    fetchFeed();
+  }, []);
+
+  const fetchFeed = () => {
+    // TODO: fetch feeds
+    console.log('handle feeds fetching...');
+  };
+
+  const goToNotificationScreen = () => {
+    // TODO: goto notification screen
+    console.log('handle navigation to notification screen...');
+  };
+  const goToExploreNearbyScreen = () => {
+    // TODO: goto explore neary by screen
+    console.log('handle navigation to elplore near by screen...');
+  };
+  const goToUserProfileScreen = () => {
+    // TODO: goto user rofile screen
+    console.log('handle navigation to user profile by screen...');
+  };
+  const goToListItemScreen = () => {
+    // TODO: goto list item screen
+    console.log('handle navigation to list item screen...');
+  };
+
   return (
     <ScroolScreen
       style={styles.container}
@@ -25,33 +63,121 @@ const FeedScreen = () => {
           </View>
           <View style={styles.notificationContainer}>
             <Icon
+              onPress={goToNotificationScreen}
               style={styles.notification}
               name="bell"
               size={40}
               color={colors.light}
               backgroundColor={colors.primary}
             />
-            <View style={styles.notificationCount}>
-              {/* <AppText
-                style={styles.notificationText}
-                fontWeight="800"
-                fontSize={12}
-                color={colors.primary}
-                text="99+"
-              /> */}
-            </View>
+            <View style={styles.notificationCount} />
           </View>
         </View>
+        <AppText fontWeight="700" text="Find Your Dream" fontSize={25} />
         <AppText
           style={styles.userHeading}
           fontWeight="700"
-          text="Find Your Dream Home"
+          text="Home"
           fontSize={25}
         />
         <View style={styles.locationContainer}>
           <AppText fontWeight="300" text="Location: " />
           <AppText fontWeight="600" text="Ibadan, Oyo State" />
         </View>
+      </View>
+      {/* serch input */}
+      <View style={styles.sectionContainer}>
+        <AppTextInput
+          style={styles.searchInputContainer}
+          inputStyle={styles.searchInput}
+          placeholder="Search for property or regions"
+          LeftComponent={
+            <Icon
+              style={styles.searchInputIcon}
+              name="search"
+              color={colors.dark}
+            />
+          }
+        />
+      </View>
+      {/* top location section */}
+      <View style={styles.sectionContainer}>
+        <AppText
+          data={topLocations}
+          text="Top Locations"
+          style={styles.sectionHeaderText}
+        />
+        <FlatList
+          data={topLocations}
+          showsHorizontalScrollIndicator={false}
+          horizontal={true}
+          keyExtractor={({id}) => id.toString()}
+          ItemSeparatorComponent={<View style={{marginHorizontal: 20}} />}
+          renderItem={({item}) => <TopLoationItem data={item} />}
+        />
+      </View>
+      {/* explore nearby property section */}
+      <View style={styles.sectionContainer}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'baseline',
+            justifyContent: 'space-between',
+            marginBottom: 10,
+          }}>
+          <AppText
+            style={{...styles.sectionHeaderText, marginBottom: 0}}
+            text="Explore nearby properties"
+          />
+          <AppText
+            onPress={goToExploreNearbyScreen}
+            fontWeight={700}
+            fontSize={18}
+            color={colors.primary}
+            text="View all"
+          />
+        </View>
+        <FlatList
+          data={nearbyItemsData}
+          showsVerticalScrollIndicator={false}
+          renderItem={({item, index}) => (
+            <ListingsITem key={index.toString()} data={item} />
+          )}
+        />
+      </View>
+
+      {/* recomendation section */}
+      <View style={styles.sectionContainer}>
+        <AppText text="Recommended for you" style={styles.sectionHeaderText} />
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={recomendation}
+          renderItem={({item, index}) => (
+            <RecomendeItem
+              onPress={goToListItemScreen}
+              key={index.toString()}
+              data={item}
+            />
+          )}
+        />
+
+        {/* top seller section */}
+      </View>
+      <View style={styles.sectionContainer}>
+        <AppText text="Top Rated Seller" style={styles.sectionHeaderText} />
+        <FlatList
+          data={topRatedSeller}
+          showsHorizontalScrollIndicator={false}
+          horizontal={true}
+          renderItem={({item, index}) => (
+            <RatedSellerItem
+              onPress={goToUserProfileScreen}
+              key={index.toString()}
+              data={item}
+            />
+          )}
+        />
       </View>
     </ScroolScreen>
   );
@@ -61,7 +187,7 @@ export default FeedScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.neutral,
+    backgroundColor: colors.white,
   },
   userHeading: {
     width: '70%',
@@ -84,7 +210,27 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 40,
     marginBottom: 20,
   },
-
+  sectionHeaderText: {
+    marginBottom: 10,
+    color: colors.dark,
+    fontSize: 23,
+    fontWeight: '700',
+  },
+  searchInput: {
+    width: '90%',
+  },
+  searchInputContainer: {
+    justifyContent: 'flex-start',
+    borderWidth: 1,
+    borderRadius: 10,
+  },
+  searchInputIcon: {
+    marginRight: 5,
+  },
+  sectionContainer: {
+    paddingHorizontal: 20,
+    marginBottom: 30,
+  },
   userInfoView: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -108,10 +254,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.brightGreen,
     textAlign: 'center',
     justifyContent: 'center',
-  },
-  notificationText: {
-    width: '100%',
-    textAlign: 'center',
   },
   notificationContainer: {
     position: 'relative',

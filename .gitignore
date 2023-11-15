@@ -71,4 +71,7 @@ metro/
 # unused assets
 /src/assets/unused-assets/*
 
+/src/config/unused-data/*
+
 index.css
+*.html*
