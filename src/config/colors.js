@@ -21,6 +21,7 @@ export default Object.freeze({
   lightRed: '#f4bcbc',
   darkRed: '#572323',
   yellow: '#c5c514',
+  brightYellow: '#e2e91a',
   lightYellow: '#efefb5',
   veryLightYellow: '#f1f1ca',
   darkYellow: '#64640f',

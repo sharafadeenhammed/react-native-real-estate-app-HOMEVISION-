@@ -1,4 +1,4 @@
-import {StyleSheet, StatusBar, SafeAreaView, ScrollView} from 'react-native';
+import {StyleSheet, StatusBar, ScrollView} from 'react-native';
 
 import statusBar from '../config/statusBar';
 import colors from '../config/colors';

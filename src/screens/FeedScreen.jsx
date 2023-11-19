@@ -12,7 +12,6 @@ import Icon from '../components/Icon';
 import AppTextInput from '../components/AppTextInput';
 import TopLoationItem from '../components/TopLoationItem';
 import ListingsITem from '../components/ListingsITem';
-import Recomendation from '../config/unused-data/recomendation';
 import RecomendeItem from '../components/RecomendeItem';
 import topRatedSeller from '../config/unused-data/topRatedSeller';
 import RatedSellerItem from '../components/RatedSellerItem';
@@ -27,21 +26,21 @@ const FeedScreen = ({navigation}) => {
     console.log('handle feeds fetching...');
   };
 
-  const goToNotificationScreen = () => {
-    // TODO: goto notification screen
+  const goToNotificationsScreen = () => {
+    // TODO: navigate to notification screen
     console.log('handle navigation to notification screen...');
   };
-  const goToExploreNearbyScreen = () => {
-    // TODO: goto explore neary by screen
-    console.log('handle navigation to elplore near by screen...');
+  const goToListingsScreen = id => {
+    // TODO: navigate to listings screen
+    console.log('handle navigation to listings screen... where id=', id);
   };
-  const goToUserProfileScreen = () => {
+  const goToUserProfileScreen = id => {
     // TODO: goto user rofile screen
-    console.log('handle navigation to user profile by screen...');
+    console.log('handle navigation to user profile by screen... where id=', id);
   };
-  const goToListItemScreen = () => {
+  const goToListItemScreen = id => {
     // TODO: goto list item screen
-    console.log('handle navigation to list item screen...');
+    console.log('handle navigation to list item screen... where id=', id);
   };
 
   return (
@@ -63,7 +62,7 @@ const FeedScreen = ({navigation}) => {
           </View>
           <View style={styles.notificationContainer}>
             <Icon
-              onPress={goToNotificationScreen}
+              onPress={goToNotificationsScreen}
               style={styles.notification}
               name="bell"
               size={40}
@@ -85,7 +84,7 @@ const FeedScreen = ({navigation}) => {
           <AppText fontWeight="600" text="Ibadan, Oyo State" />
         </View>
       </View>
-      {/* serch input */}
+      {/* serch input section*/}
       <View style={styles.sectionContainer}>
         <AppTextInput
           style={styles.searchInputContainer}
@@ -108,12 +107,14 @@ const FeedScreen = ({navigation}) => {
           style={styles.sectionHeaderText}
         />
         <FlatList
+          ListHeaderComponent={<View style={{height: 10, width: 10}} />}
           data={topLocations}
           showsHorizontalScrollIndicator={false}
           horizontal={true}
           keyExtractor={({id}) => id.toString()}
           ItemSeparatorComponent={<View style={{marginHorizontal: 20}} />}
           renderItem={({item}) => <TopLoationItem data={item} />}
+          ListFooterComponent={<View style={{height: 10, width: 10}} />}
         />
       </View>
       {/* explore nearby property section */}
@@ -130,7 +131,7 @@ const FeedScreen = ({navigation}) => {
             text="Explore nearby properties"
           />
           <AppText
-            onPress={goToExploreNearbyScreen}
+            onPress={goToListingsScreen}
             fontWeight={700}
             fontSize={18}
             color={colors.primary}
@@ -141,7 +142,11 @@ const FeedScreen = ({navigation}) => {
           data={nearbyItemsData}
           showsVerticalScrollIndicator={false}
           renderItem={({item, index}) => (
-            <ListingsITem key={index.toString()} data={item} />
+            <ListingsITem
+              onPress={() => goToListItemScreen(item.id)}
+              key={index.toString()}
+              data={item}
+            />
           )}
         />
       </View>
@@ -155,7 +160,7 @@ const FeedScreen = ({navigation}) => {
           data={recomendation}
           renderItem={({item, index}) => (
             <RecomendeItem
-              onPress={goToListItemScreen}
+              onPress={() => goToListItemScreen(item.id)}
               key={index.toString()}
               data={item}
             />
@@ -172,7 +177,7 @@ const FeedScreen = ({navigation}) => {
           horizontal={true}
           renderItem={({item, index}) => (
             <RatedSellerItem
-              onPress={goToUserProfileScreen}
+              onPress={() => goToUserProfileScreen(item.id)}
               key={index.toString()}
               data={item}
             />
