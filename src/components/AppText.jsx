@@ -8,6 +8,7 @@ const AppText = ({
   color,
   fontSize,
   fontWeight,
+  selectable = false,
 }) => {
   const styles = StyleSheet.create({
     text: {
@@ -18,13 +19,17 @@ const AppText = ({
   });
 
   return onPress ? (
-    <Text onPress={onPress} style={[styles.text, style]}>
+    <Text
+      selectable={selectable}
+      onPress={onPress}
+      style={[styles.text, style]}>
       {children}
       {text}
     </Text>
   ) : (
-    <Text style={[styles.text, style]}>
-      {children} {text}
+    <Text selectable={selectable} style={[styles.text, style]}>
+      {children}
+      {text}
     </Text>
   );
 };

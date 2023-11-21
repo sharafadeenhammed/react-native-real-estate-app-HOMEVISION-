@@ -9,10 +9,10 @@ import VerifyCodeScreen from './src/screens/VerifyCodeScreen';
 import ResetPasswordScreen from './src/screens/ResetPasswordScreen';
 import RootNavigation from './src/navigation/RootNavigation';
 import FeedScreen from './src/screens/FeedScreen';
-FeedScreen;
+import ListingDetailScreen from './src/screens/ListingDetailScreen';
 
 function App() {
-  return <FeedScreen />;
+  return <ListingDetailScreen />;
 }
 
 export default App;

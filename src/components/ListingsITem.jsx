@@ -77,7 +77,13 @@ const ListingsITem = ({data, onPress}) => {
           />
         ) : null}
       </View>
-      <AppText fontSize={16} color={colors.dark} text={`$ ${data.price}/Mo`} />
+      <AppText
+        fontSize={16}
+        color={colors.dark}
+        text={`$ ${data.price.price}/${
+          data.price.recuring === 'Month' ? 'Mo' : 'Yr'
+        }`}
+      />
 
       {/* other listing details */}
       <View style={styles.otherDetailsContainer}>

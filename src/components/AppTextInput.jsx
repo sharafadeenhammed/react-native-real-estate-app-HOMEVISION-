@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import {StyleSheet, View, TextInput} from 'react-native';
 import colors from '../config/colors';
 
 const AppTextInput = ({
@@ -44,8 +44,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     fontSize: 20,
-  },
-  flashMessage: {
-    marginBottom: 20,
+    color: colors.dark,
   },
 });

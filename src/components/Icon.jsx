@@ -20,7 +20,7 @@ const Icon = ({
       height: size,
       width: size,
       backgroundColor: backgroundColor,
-      borderRadius: size / 2 || 15,
+      borderRadius: size / 2,
     },
   });
 
@@ -35,15 +35,9 @@ const Icon = ({
       </View>
     </TouchableWithoutFeedback>
   ) : (
-    <TouchableWithoutFeedback>
-      <View style={[styles.container, style]}>
-        <FontAwesome
-          name={name}
-          size={size * iconSizeMulitpier}
-          color={color}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+    <View style={[styles.container, style]}>
+      <FontAwesome name={name} size={size * iconSizeMulitpier} color={color} />
+    </View>
   );
 };
 

@@ -34,13 +34,16 @@ const FeedScreen = ({navigation}) => {
     // TODO: navigate to listings screen
     console.log('handle navigation to listings screen... where id=', id);
   };
-  const goToUserProfileScreen = id => {
-    // TODO: goto user rofile screen
-    console.log('handle navigation to user profile by screen... where id=', id);
+  const goToUserDetailScreen = id => {
+    // TODO: goto user detail screen
+    console.log('handle navigation to user detail screen... where id=', id);
   };
-  const goToListItemScreen = id => {
+  const goToListItemDetailScreen = id => {
     // TODO: goto list item screen
-    console.log('handle navigation to list item screen... where id=', id);
+    console.log(
+      'handle navigation to list item details screen... where id=',
+      id,
+    );
   };
 
   return (
@@ -143,7 +146,7 @@ const FeedScreen = ({navigation}) => {
           showsVerticalScrollIndicator={false}
           renderItem={({item, index}) => (
             <ListingsITem
-              onPress={() => goToListItemScreen(item.id)}
+              onPress={() => goToListItemDetailScreen(item.id)}
               key={index.toString()}
               data={item}
             />
@@ -160,7 +163,7 @@ const FeedScreen = ({navigation}) => {
           data={recomendation}
           renderItem={({item, index}) => (
             <RecomendeItem
-              onPress={() => goToListItemScreen(item.id)}
+              onPress={() => goToListItemDetailScreen(item.id)}
               key={index.toString()}
               data={item}
             />
@@ -177,7 +180,7 @@ const FeedScreen = ({navigation}) => {
           horizontal={true}
           renderItem={({item, index}) => (
             <RatedSellerItem
-              onPress={() => goToUserProfileScreen(item.id)}
+              onPress={() => goToUserDetailScreen(item.id)}
               key={index.toString()}
               data={item}
             />
