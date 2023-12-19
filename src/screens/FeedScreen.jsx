@@ -1,5 +1,4 @@
 import {StyleSheet, View, Image, FlatList} from 'react-native';
-import ScroolScreen from '../components/ScrollScreen';
 import {useEffect} from 'react';
 
 import colors from '../config/colors';
@@ -8,6 +7,7 @@ import topLocations from '../config/unused-data/topLocations';
 import nearbyItemsData from '../config/unused-data/nearbyItemsData';
 import recomendation from '../config/unused-data/recomendation';
 import AppText from '../components/AppText';
+import ScroolScreen from '../components/ScrollScreen';
 import Icon from '../components/Icon';
 import AppTextInput from '../components/AppTextInput';
 import TopLoationItem from '../components/TopLoationItem';
@@ -49,8 +49,9 @@ const FeedScreen = ({navigation}) => {
   return (
     <ScroolScreen
       style={styles.container}
-      statusBarColor={colors.primary}
+      statusBackgroundColor={colors.primary}
       statusBarStyle={statusBar.darkBackground}>
+      {/*  */}
       <View style={styles.userInfoContainer}>
         <View style={styles.userInfoViewContainer}>
           <View style={styles.userInfoView}>
@@ -102,6 +103,7 @@ const FeedScreen = ({navigation}) => {
           }
         />
       </View>
+      {/* hdjshdjashdsjhkdf */}
       {/* top location section */}
       <View style={styles.sectionContainer}>
         <AppText
@@ -141,7 +143,18 @@ const FeedScreen = ({navigation}) => {
             text="View all"
           />
         </View>
-        <FlatList
+        {/* rendering nearby items */}
+        {nearbyItemsData.map((item, index) => {
+          return (
+            <ListingsITem
+              onPress={() => goToListItemDetailScreen(item.id)}
+              key={index.toString()}
+              data={item}
+            />
+          );
+        })}
+
+        {/* <FlatList
           data={nearbyItemsData}
           showsVerticalScrollIndicator={false}
           renderItem={({item, index}) => (
@@ -151,7 +164,7 @@ const FeedScreen = ({navigation}) => {
               data={item}
             />
           )}
-        />
+        /> */}
       </View>
 
       {/* recomendation section */}
@@ -238,6 +251,7 @@ const styles = StyleSheet.create({
   sectionContainer: {
     paddingHorizontal: 20,
     marginBottom: 30,
+    height: 'auto',
   },
   userInfoView: {
     flexDirection: 'row',

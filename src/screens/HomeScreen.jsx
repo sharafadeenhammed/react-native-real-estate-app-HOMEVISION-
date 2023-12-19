@@ -8,7 +8,7 @@ import Screen from '../components/Screen';
 const Home = () => {
   return (
     <Screen
-      statusBarColor={colors.gray}
+      statusBackgroundColor={colors.gray}
       style={styles.container}
       statusBarStyle={statusBar.darkBackground}>
       <ImageBackground

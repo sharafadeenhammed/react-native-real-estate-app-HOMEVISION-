@@ -3,14 +3,22 @@ import {StyleSheet, StatusBar, SafeAreaView} from 'react-native';
 import statusBar from '../config/statusBar';
 import colors from '../config/colors';
 
-const Screen = ({children, style, statusBarColor, statusBarStyle}) => {
+const Screen = ({
+  children,
+  style,
+  statusBackgroundColor,
+  statusBarStyle,
+  setStatusBar = true,
+}) => {
   return (
     <SafeAreaView style={[styles.container, style]}>
-      <StatusBar
-        animated={true}
-        backgroundColor={statusBarColor || colors.neutral}
-        barStyle={statusBarStyle || statusBar.lightBackground}
-      />
+      {setStatusBar ? (
+        <StatusBar
+          animated={true}
+          backgroundColor={statusBackgroundColor || colors.neutral}
+          barStyle={statusBarStyle || statusBar.lightBackground}
+        />
+      ) : null}
       {children}
     </SafeAreaView>
   );

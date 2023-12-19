@@ -6,7 +6,8 @@ import colors from '../config/colors';
 const ScroolScreen = ({
   children,
   style,
-  statusBarColor,
+  setStatusBar = true,
+  statusBackgroundColor,
   statusBarStyle,
   ...others
 }) => {
@@ -15,11 +16,13 @@ const ScroolScreen = ({
       showsVerticalScrollIndicator={false}
       style={[styles.container, style]}
       {...others}>
-      <StatusBar
-        animated={true}
-        backgroundColor={statusBarColor || colors.neutral}
-        barStyle={statusBarStyle || statusBar.lightBackground}
-      />
+      {setStatusBar ? (
+        <StatusBar
+          animated={true}
+          backgroundColor={statusBackgroundColor || colors.neutral}
+          barStyle={statusBarStyle || statusBar.lightBackground}
+        />
+      ) : null}
       {children}
     </ScrollView>
   );

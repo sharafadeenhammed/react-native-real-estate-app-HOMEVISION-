@@ -80,7 +80,7 @@ const ListingsITem = ({data, onPress}) => {
       <AppText
         fontSize={16}
         color={colors.dark}
-        text={`$ ${data.price.price}/${
+        text={` $ ${data.price.price}/${
           data.price.recuring === 'Month' ? 'Mo' : 'Yr'
         }`}
       />

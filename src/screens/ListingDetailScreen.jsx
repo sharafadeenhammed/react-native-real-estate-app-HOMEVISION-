@@ -7,14 +7,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useRef, useState, useEffect} from 'react';
-
+import recomendation from '../config/unused-data/recomendation';
 import colors from '../config/colors';
 import ScroolScreen from '../components/ScrollScreen';
+import Screen from '../components/Screen';
 import nearbyItemsData from '../config/unused-data/nearbyItemsData';
 import ListItemCarosel from '../components/ListItemCarosel';
 import Icon from '../components/Icon';
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
+import RecomendeItem from '../components/RecomendeItem';
 const data = nearbyItemsData[0];
 const dimension = Dimensions.get('window');
 const ListingDetailScreen = ({navigation, id}) => {
@@ -51,12 +53,20 @@ const ListingDetailScreen = ({navigation, id}) => {
     console.log('handle property booking where id =', id);
   };
 
+  const goToListItemDetailScreen = id => {
+    // TODO: goto list item screen
+    console.log(
+      'handle navigation to list item details screen... where id=',
+      id,
+    );
+  };
+
   useEffect(() => {
     fetchViewData();
   }, []);
 
   return (
-    <View style={styles.container}>
+    <Screen statusBackgroundColor={'black'} style={styles.container}>
       <ScroolScreen style={styles.scroolContainer}>
         <View style={styles.imageListContainer}>
           {/* image listing */}
@@ -92,11 +102,7 @@ const ListingDetailScreen = ({navigation, id}) => {
 
         {/* listing details with icon */}
         <View style={styles.sectionContainer}>
-          <AppText
-            selectable
-            text={data.title}
-            style={styles.listingTitleText}
-          />
+          <AppText text={data.title} style={styles.listingTitleText} />
           <View style={styles.location}>
             <Icon
               size={18}
@@ -202,7 +208,6 @@ const ListingDetailScreen = ({navigation, id}) => {
               <Image style={styles.listerImage} source={data.lister.photo} />
               <View>
                 <AppText
-                  selectable
                   text={data.lister.name}
                   color={colors.dark}
                   fontSize={18}
@@ -210,7 +215,6 @@ const ListingDetailScreen = ({navigation, id}) => {
                 />
                 <AppText
                   text={data.lister.role}
-                  selectable
                   color={colors.dark}
                   fontSize={16}
                 />
@@ -239,10 +243,35 @@ const ListingDetailScreen = ({navigation, id}) => {
             style={styles.descriptionText}
           />
         </View>
+
+        {/* location map section */}
+        <View style={styles.sectionContainer}>
+          <AppText text="Location" style={styles.sectionHeader} />
+          <Image
+            style={styles.locationImage}
+            source={require('../assets/unused-assets/map.png')}
+          />
+        </View>
+
+        {/* recomendation section */}
+        <View style={styles.sectionContainer}>
+          <AppText text="Recommended for you" style={styles.sectionHeader} />
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={recomendation}
+            renderItem={({item, index}) => (
+              <RecomendeItem
+                onPress={() => goToListItemDetailScreen(item.id)}
+                key={index.toString()}
+                data={item}
+              />
+            )}
+          />
+        </View>
       </ScroolScreen>
       <View style={[styles.sectionContainer, styles.priceBookContainer]}>
         <AppText
-          selectable
           fontSize={23}
           fontWeight="800"
           text={`$${data.price.price}/${data.price.recuring}`}
@@ -255,7 +284,7 @@ const ListingDetailScreen = ({navigation, id}) => {
           onPress={() => handleBooking(data.id)}
         />
       </View>
-    </View>
+    </Screen>
   );
 };
 
@@ -273,15 +302,18 @@ const styles = StyleSheet.create({
     position: 'relative',
     flex: 1,
     paddingBottom: 70,
+    backgroundColor: colors.white,
   },
   scroolContainer: {
     margin: 0,
     padding: 0,
     margin: 0,
     paddingBottom: 400,
+    backgroundColor: colors.white,
   },
   descriptionText: {
-    textAlign: 'justify',
+    textAlign: 'left',
+    width: '100%',
   },
   image: {
     borderBottomLeftRadius: 10,
@@ -298,6 +330,11 @@ const styles = StyleSheet.create({
   location: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  locationImage: {
+    height: 200,
+    width: '100%',
+    objectFit: 'contain',
   },
   numsOfImagesTag: {
     paddingHorizontal: 5,
