@@ -2,8 +2,6 @@ import {StyleSheet, Text, View, TextInput} from 'react-native';
 import colors from '../config/colors';
 import {useFormikContext} from 'formik';
 import FlashMessage from './FlashMessage';
-import {useEffect, useState} from 'react';
-import Screen from './Screen';
 
 const FormTextInput = ({
   RightComponent,
@@ -20,10 +18,12 @@ const FormTextInput = ({
   const {setFieldValue, touched, errors, setFieldTouched, values} =
     useFormikContext();
   return (
-    <Screen>
+    <View>
       <View style={[styles.container, style]}>
         {LeftComponent ? LeftComponent : null}
         <TextInput
+          placeholderTextColor={colors.gray}
+          cursorColor={colors.dark}
           nativeID={name}
           onChangeText={value => setFieldValue(name, value)}
           onBlur={() => setFieldTouched(name, true)}
@@ -41,7 +41,7 @@ const FormTextInput = ({
           message={errors[name]}
         />
       ) : null}
-    </Screen>
+    </View>
   );
 };
 
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     fontSize: 20,
+    color:colors.dark
   },
   flashMessage: {
     marginBottom: 5,

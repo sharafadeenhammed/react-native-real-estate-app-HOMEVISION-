@@ -18,7 +18,9 @@ const AppTextInput = ({
     <View style={[styles.container, style]}>
       {LeftComponent ? LeftComponent : null}
       <TextInput
+        placeholderTextColor={colors.gray}
         ref={fieldRef}
+        cursorColor={colors.dark}
         style={[styles.input, inputStyle]}
         {...others}
       />

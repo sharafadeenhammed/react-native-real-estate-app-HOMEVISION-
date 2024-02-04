@@ -1,6 +1,5 @@
 import {StyleSheet, View} from 'react-native';
-import { useState, useRef, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useState, useRef} from 'react';
 
 import colors from '../config/colors';
 import routes from '../config/routes';
@@ -11,12 +10,7 @@ import AppTextInput from '../components/AppTextInput';
 import FlashMessage from '../components/FlashMessage';
 
 const VerifyCodeScreen = ({ navigation, route:{params}}) => {
-  const navigator = useNavigation();
-  useEffect(() => {
-    console.log(params);
-  },[])
   const [errorMessage, setErrorMesssage] = useState('');
-  const [toPreviousInput, setToPreviousInput] = useState(false);
   const [inputValues, setInputValues] = useState(['', '', '', '', '', '']);
   const refs = [useRef(), useRef(), useRef(), useRef(), useRef(), useRef()];
 
@@ -45,15 +39,6 @@ const VerifyCodeScreen = ({ navigation, route:{params}}) => {
         currentValues[currentInputIndex] = '';
         return currentValues;
       });
-    if (value.length > 1) {
-      setInputValues(initialValues => {
-        const currentValues = [...initialValues];
-        currentValues[currentInputIndex] = value[value.length - 1];
-        return currentValues;
-      });
-      isToNextInput && refs[currentInputIndex + 1].current.focus();
-      return;
-    }
     setInputValues(initialValues => {
       const currentValues = [...initialValues];
       currentValues[currentInputIndex] = value;
@@ -67,24 +52,15 @@ const VerifyCodeScreen = ({ navigation, route:{params}}) => {
     if (isToPrevInput == false) return;
     if (
       nativeEvent.key == 'Backspace' &&
-      inputValues[currentInputIndex] === '' &&
-      !toPreviousInput
-    )
-      return setToPreviousInput(true);
-    if (
-      nativeEvent.key == 'Backspace' &&
-      inputValues[currentInputIndex] === '' &&
-      toPreviousInput
+      inputValues[currentInputIndex] === ''
     ) {
-      setToPreviousInput(false);
       refs[currentInputIndex - 1].current.focus();
     }
   };
 
   // function delegated to input focus event
   const handleFocus = currentInputIndex => {
-    if (inputValues[currentInputIndex] === '') return setToPreviousInput(true);
-    setToPreviousInput(false);
+    // if (inputValues[currentInputIndex] === '') return setToPreviousInput(true);
   };
 
   return (
@@ -94,6 +70,7 @@ const VerifyCodeScreen = ({ navigation, route:{params}}) => {
       <View style={styles.codeContainer}>
         {/* first input value */}
         <AppTextInput
+          maxLength={1}
           fieldRef={refs[0]}
           value={inputValues[0]}
           onChangeText={value => handleChangeText(value, 0, true)}
@@ -115,6 +92,7 @@ const VerifyCodeScreen = ({ navigation, route:{params}}) => {
 
         {/* third input value */}
         <AppTextInput
+          maxLength={1}
           fieldRef={refs[2]}
           value={inputValues[2]}
           onFocus={() => handleFocus(2)}
@@ -126,6 +104,7 @@ const VerifyCodeScreen = ({ navigation, route:{params}}) => {
 
         {/* fourth input value */}
         <AppTextInput
+          maxLength={1}
           fieldRef={refs[3]}
           value={inputValues[3]}
           inputStyle={styles.input}
@@ -137,6 +116,7 @@ const VerifyCodeScreen = ({ navigation, route:{params}}) => {
 
         {/* fifth input value */}
         <AppTextInput
+          maxLength={1}
           fieldRef={refs[4]}
           value={inputValues[4]}
           onFocus={() => handleFocus(4)}
@@ -148,6 +128,7 @@ const VerifyCodeScreen = ({ navigation, route:{params}}) => {
 
         {/* sixth input value */}
         <AppTextInput
+          maxLength={1}
           fieldRef={refs[5]}
           value={inputValues[5]}
           onFocus={() => handleFocus(5)}
@@ -172,7 +153,7 @@ const VerifyCodeScreen = ({ navigation, route:{params}}) => {
           fontSize={18}
           fontWeight="700"
           color={colors.blue}
-          text="Resend"
+          text="Resend code"
         />
       </View>
       <AppButton
