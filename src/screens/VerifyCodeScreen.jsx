@@ -1,5 +1,6 @@
 import {StyleSheet, View} from 'react-native';
-import {useState, useRef} from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import colors from '../config/colors';
 import routes from '../config/routes';
@@ -9,7 +10,11 @@ import AppText from '../components/AppText';
 import AppTextInput from '../components/AppTextInput';
 import FlashMessage from '../components/FlashMessage';
 
-const VerifyCodeScreen = ({navigation}) => {
+const VerifyCodeScreen = ({ navigation, route:{params}}) => {
+  const navigator = useNavigation();
+  useEffect(() => {
+    console.log(params);
+  },[])
   const [errorMessage, setErrorMesssage] = useState('');
   const [toPreviousInput, setToPreviousInput] = useState(false);
   const [inputValues, setInputValues] = useState(['', '', '', '', '', '']);
@@ -29,7 +34,7 @@ const VerifyCodeScreen = ({navigation}) => {
 
   const requestNewCode = () => {
     //TODO: request for a new code to be sent to user email
-    console.log('send new code to email...');
+    console.log(`send new code to email...[ ${params.email} ]`,);
   };
 
   // function delegated to text change event

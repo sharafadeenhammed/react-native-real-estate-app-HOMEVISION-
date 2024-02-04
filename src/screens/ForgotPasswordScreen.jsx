@@ -20,7 +20,7 @@ const ForgotPassswordScreen = ({navigation}) => {
     console.log('SUBMITTING FORM!');
     console.log('values: ', values);
     formikBag.resetForm();
-    navigation.navigate(routes.VERIFY_CODE);
+    navigation.navigate(routes.VERIFY_CODE, {email: values.email});
   };
   return (
     <AppForm

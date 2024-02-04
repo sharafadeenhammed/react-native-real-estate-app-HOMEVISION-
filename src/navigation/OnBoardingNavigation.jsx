@@ -14,7 +14,7 @@ export default function OnBoardingNavigation() {
       />
       <Stack.Screen
         options={{headerShown: false}}
-        name={routes.FINISH}
+        name={routes.ONBOARDING_COMPLETED}
         component={AuthNavigation}
       />
     </Stack.Navigator>

@@ -29,7 +29,7 @@ const OnBoardItem = ({item, navigation, onPress}) => {
           style={styles.button}
           textColor={colors.neutral}
           onPress={() => {
-            if (item.button.action) return navigation.navigate(routes.FINISH);
+            if (item.button.action) return navigation.navigate(routes.ONBOARDING_COMPLETED);
             onPress();
           }}
         />

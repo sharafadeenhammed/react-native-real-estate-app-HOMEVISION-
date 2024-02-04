@@ -1,4 +1,4 @@
-import HomeScreen from './src/screens/HomeScreen';
+// import HomeScreen from './src/screens/HomeScreen';
 import TestScreen from './src/components/TestScreen';
 import OnBoardScreen from './src/screens/OnBoardScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
@@ -12,7 +12,7 @@ import FeedScreen from './src/screens/FeedScreen';
 import ListingDetailScreen from './src/screens/ListingDetailScreen';
 
 function App() {
-  return <ListingDetailScreen />;
+  return <RootNavigation/>;
 }
 
 export default App;

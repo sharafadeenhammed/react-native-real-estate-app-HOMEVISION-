@@ -3,7 +3,7 @@ import {StyleSheet, View, Image, TouchableWithoutFeedback} from 'react-native';
 import colors from '../config/colors';
 import AppText from './AppText';
 
-const TopLoationItem = ({data, onPress}) => {
+const TopLocationItem = ({data, onPress}) => {
   return (
     <TouchableWithoutFeedback onPress={onPress ? onPress : null}>
       <View style={styles.container}>
@@ -26,7 +26,7 @@ const TopLoationItem = ({data, onPress}) => {
   );
 };
 
-export default TopLoationItem;
+export default TopLocationItem;
 
 const styles = StyleSheet.create({
   container: {

@@ -10,7 +10,7 @@ import AppText from '../components/AppText';
 import ScroolScreen from '../components/ScrollScreen';
 import Icon from '../components/Icon';
 import AppTextInput from '../components/AppTextInput';
-import TopLoationItem from '../components/TopLoationItem';
+import TopLocationItem from '../components/TopLocationItem';
 import ListingsITem from '../components/ListingsITem';
 import RecomendeItem from '../components/RecomendeItem';
 import topRatedSeller from '../config/unused-data/topRatedSeller';
@@ -118,7 +118,7 @@ const FeedScreen = ({navigation}) => {
           horizontal={true}
           keyExtractor={({id}) => id.toString()}
           ItemSeparatorComponent={<View style={{marginHorizontal: 20}} />}
-          renderItem={({item}) => <TopLoationItem data={item} />}
+          renderItem={({item}) => <TopLocationItem data={item} />}
           ListFooterComponent={<View style={{height: 10, width: 10}} />}
         />
       </View>
