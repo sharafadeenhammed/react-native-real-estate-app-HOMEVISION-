@@ -1,4 +1,4 @@
-import {StyleSheet, View, Image} from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 
 import colors from '../config/colors';
 import routes from '../config/routes';
@@ -6,7 +6,7 @@ import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import Screen from '../components/Screen';
 
-const WelcomeScreen = ({navigation}) => {
+const WelcomeScreen = ({ navigation }) => {
   return (
     <Screen style={styles.container}>
       <View style={styles.imageContainer}>
@@ -21,15 +21,15 @@ const WelcomeScreen = ({navigation}) => {
       </View>
       <View style={styles.buttonContainer}>
         <AppButton
-          onPress={() => navigation.navigate(routes.REGISTER)}
+          onPress={() => navigation.navigate(routes.AUTH.REGISTER)}
           text="SIGN UP AS A BUYER"
           style={styles.button}
           textColor={colors.neutral}
         />
         <AppButton
           text="SIGN UP AS AN AGENT"
-          onPress={() => navigation.navigate(routes.REGISTER)}
-          style={{...styles.button, ...styles.sellerButton}}
+          onPress={() => navigation.navigate(routes.AUTH.REGISTER)}
+          style={{ ...styles.button, ...styles.sellerButton }}
           textColor={colors.primary}
         />
       </View>
@@ -40,13 +40,22 @@ const WelcomeScreen = ({navigation}) => {
           text="Already have an account?"
         />
         <AppText
-          onPress={() => navigation.navigate(routes.LOGIN)}
+          onPress={() => navigation.navigate(routes.AUTH.LOGIN)}
           fontSize={18}
           fontWeight="700"
           color={colors.blue}
           text="Sign in"
         />
       </View>
+      <AppText
+        onPress={() => navigation.navigate(routes.BASE_ROUTES.APP)}
+        fontSize={18}
+        style={{ textAlign: "center" }}
+        fontWeight="700"
+        color={colors.blue}
+        text="Check App"
+      />
+
     </Screen>
   );
 };
@@ -83,7 +92,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   imageContainer: {
-    height: '55%',
+    height: '47%',
     width: '100%',
     paddingLeft: 5,
     overflow: 'hidden',

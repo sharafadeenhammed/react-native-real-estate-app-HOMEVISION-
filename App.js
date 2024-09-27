@@ -12,7 +12,7 @@ import FeedScreen from './src/screens/FeedScreen';
 import ListingDetailScreen from './src/screens/ListingDetailScreen';
 
 function App() {
-  return <ListingDetailScreen />;
+  return <RootNavigation />;
 }
 
 export default App;

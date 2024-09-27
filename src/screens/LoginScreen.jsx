@@ -1,5 +1,5 @@
-import {StyleSheet, View} from 'react-native';
-import {useState} from 'react';
+import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
 import * as yup from 'yup';
 
 import colors from '../config/colors';
@@ -16,10 +16,10 @@ const validationSchema = yup.object({
   email: yup.string().email().required().label('Email'),
 });
 
-const initialValues = {email: '', password: ''};
+const initialValues = { email: '', password: '' };
 
-const LoginScreen = ({navigation}) => {
-  const [showPassword, setShowPassword] = useState(false);
+const LoginScreen = ({ navigation }) => {
+  const [ showPassword, setShowPassword ] = useState(false);
   const handleSubmit = (values, formikBag) => {
     // TODO login user
     console.log('SUBMITTING FORM!');
@@ -50,8 +50,8 @@ const LoginScreen = ({navigation}) => {
         <AppText style={styles.label} text="Password" />
         <FormTextInput
           name="password"
-          style={{...styles.inputContainer, marginBottom: 5}}
-          inputStyle={{...styles.input, ...styles.passwordInput}}
+          style={{ ...styles.inputContainer, marginBottom: 5 }}
+          inputStyle={{ ...styles.input, ...styles.passwordInput }}
           secureTextEntry={!showPassword}
           placeholder="password"
           cursorColor={colors.black}
@@ -76,7 +76,7 @@ const LoginScreen = ({navigation}) => {
           }
         />
         <AppText
-          onPress={() => navigation.navigate(routes.FORGOT_PASSWORD)}
+          onPress={() => navigation.navigate(routes.AUTH.FORGOT_PASSWORD)}
           fontSize={18}
           fontWeight="700"
           color={colors.blue}
@@ -130,7 +130,7 @@ const LoginScreen = ({navigation}) => {
             text="Don't have an account yet?"
           />
           <AppText
-            onPress={() => navigation.navigate(routes.REGISTER)}
+            onPress={() => navigation.navigate(routes.AUTH.REGISTER)}
             fontSize={18}
             fontWeight="700"
             color={colors.blue}

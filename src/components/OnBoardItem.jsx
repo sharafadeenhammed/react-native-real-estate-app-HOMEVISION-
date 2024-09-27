@@ -1,4 +1,4 @@
-import {StyleSheet, Image, View, Dimensions} from 'react-native';
+import { StyleSheet, Image, View, Dimensions } from 'react-native';
 
 import colors from '../config/colors';
 import routes from '../config/routes';
@@ -9,7 +9,7 @@ import OnBoardProgress from './Carosel';
 
 const screenDimension = Dimensions.get('window');
 
-const OnBoardItem = ({item, navigation, onPress}) => {
+const OnBoardItem = ({ item, navigation, onPress }) => {
   return (
     <Screen style={styles.container}>
       <View style={styles.imageContainer}>
@@ -29,7 +29,7 @@ const OnBoardItem = ({item, navigation, onPress}) => {
           style={styles.button}
           textColor={colors.neutral}
           onPress={() => {
-            if (item.button.action) return navigation.navigate(routes.FINISH);
+            if (item.button.action) return navigation.navigate(routes.AUTH.FINISH);
             onPress();
           }}
         />

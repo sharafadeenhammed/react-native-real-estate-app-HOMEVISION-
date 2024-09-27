@@ -1,5 +1,5 @@
-import {StyleSheet, View} from 'react-native';
-import {useState} from 'react';
+import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
 import * as yup from 'yup';
 
 import colors from '../config/colors';
@@ -17,10 +17,10 @@ const validationSchema = yup.object({
   email: yup.string().email().required().label('Email'),
 });
 
-const initialValues = {username: '', password: '', email: ''};
+const initialValues = { username: '', password: '', email: '' };
 
-const RegisterScreen = ({navigation}) => {
-  const [showPassword, setShowPassword] = useState(false);
+const RegisterScreen = ({ navigation }) => {
+  const [ showPassword, setShowPassword ] = useState(false);
   const handleSubmit = (values, formikBag) => {
     // TODO register user
     console.log('SUBMITTING FORM!');
@@ -60,7 +60,7 @@ const RegisterScreen = ({navigation}) => {
         <AppText style={styles.label} text="Password" />
         <FormTextInput
           name="password"
-          inputStyle={{...styles.input, ...styles.passwordInput}}
+          inputStyle={{ ...styles.input, ...styles.passwordInput }}
           style={styles.inputContainer}
           secureTextEntry={!showPassword}
           placeholder="password"
@@ -132,7 +132,7 @@ const RegisterScreen = ({navigation}) => {
             text="Already have an account?"
           />
           <AppText
-            onPress={() => navigation.navigate(routes.LOGIN)}
+            onPress={() => navigation.navigate(routes.AUTH.LOGIN)}
             fontSize={18}
             fontWeight="700"
             color={colors.blue}

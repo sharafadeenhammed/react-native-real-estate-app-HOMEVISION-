@@ -6,7 +6,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import {useRef, useState, useEffect} from 'react';
+import { useRef, useState, useEffect } from 'react';
 import recomendation from '../config/unused-data/recomendation';
 import colors from '../config/colors';
 import ScroolScreen from '../components/ScrollScreen';
@@ -17,10 +17,10 @@ import Icon from '../components/Icon';
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import RecomendeItem from '../components/RecomendeItem';
-const data = nearbyItemsData[0];
+const data = nearbyItemsData[ 0 ];
 const dimension = Dimensions.get('window');
-const ListingDetailScreen = ({navigation, id}) => {
-  const [index, setIndex] = useState(0);
+const ListingDetailScreen = ({ navigation, id }) => {
+  const [ index, setIndex ] = useState(0);
 
   const viewabilityConfigValue = useRef({
     itemVisiblePercentThreshold: 80,
@@ -28,8 +28,8 @@ const ListingDetailScreen = ({navigation, id}) => {
     minimumViewTime: 100,
   }).current;
 
-  const handleOnViewableItemChanged = useRef(({viewableItems}) => {
-    const index = viewableItems[0]?.index;
+  const handleOnViewableItemChanged = useRef(({ viewableItems }) => {
+    const index = viewableItems[ 0 ]?.index;
     setIndex(initialState => (index !== undefined ? index : initialState));
   }).current;
 
@@ -78,20 +78,20 @@ const ListingDetailScreen = ({navigation, id}) => {
             data={data.images}
             viewabilityConfig={viewabilityConfigValue}
             onViewableItemsChanged={handleOnViewableItemChanged}
-            renderItem={({item}) => (
+            renderItem={({ item }) => (
               <Image source={item} style={styles.image} />
             )}
           />
           <View style={styles.numsOfImagesTag}>
-            <Icon
+            {/* <Icon
               name="photo"
               iconSizeMulitpier={0.9}
               color={colors.dark}
               size={18}
               backgroundColor={colors.transparent}
-            />
+            /> */}
             <AppText
-              text={' ' + data.images.length}
+              text={`${index + 1}/${data.images.length}`}
               color={colors.dark}
               fontWeight="700"
               fontSize={16}
@@ -260,7 +260,7 @@ const ListingDetailScreen = ({navigation, id}) => {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             data={recomendation}
-            renderItem={({item, index}) => (
+            renderItem={({ item, index }) => (
               <RecomendeItem
                 onPress={() => goToListItemDetailScreen(item.id)}
                 key={index.toString()}
@@ -270,7 +270,7 @@ const ListingDetailScreen = ({navigation, id}) => {
           />
         </View>
       </ScroolScreen>
-      <View style={[styles.sectionContainer, styles.priceBookContainer]}>
+      <View style={[ styles.sectionContainer, styles.priceBookContainer ]}>
         <AppText
           fontSize={23}
           fontWeight="800"

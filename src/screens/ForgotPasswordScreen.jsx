@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as yup from 'yup';
 
 import colors from '../config/colors';
@@ -12,15 +12,15 @@ import routes from '../config/routes';
 const validationSchema = yup.object({
   email: yup.string().email().required().label('Email'),
 });
-const initialValues = {email: ''};
+const initialValues = { email: '' };
 
-const ForgotPassswordScreen = ({navigation}) => {
+const ForgotPassswordScreen = ({ navigation }) => {
   const handleSubmit = (values, formikBag) => {
     // TODO: make a password reset
     console.log('SUBMITTING FORM!');
     console.log('values: ', values);
     formikBag.resetForm();
-    navigation.navigate(routes.VERIFY_CODE);
+    navigation.navigate(routes.AUTH.VERIFY_CODE);
   };
   return (
     <AppForm
@@ -44,7 +44,7 @@ const ForgotPassswordScreen = ({navigation}) => {
         />
 
         <AppText
-          onPress={() => navigation.navigate(routes.LOGIN)}
+          onPress={() => navigation.navigate(routes.AUTH.LOGIN)}
           fontSize={18}
           fontWeight="700"
           color={colors.gray}

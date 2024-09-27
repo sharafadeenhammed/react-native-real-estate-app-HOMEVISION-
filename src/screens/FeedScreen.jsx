@@ -1,6 +1,7 @@
-import {StyleSheet, View, Image, FlatList} from 'react-native';
-import {useEffect} from 'react';
+import { StyleSheet, View, Image, FlatList } from 'react-native';
+import { useEffect } from 'react';
 
+import routes from '../config/routes';
 import colors from '../config/colors';
 import statusBar from '../config/statusBar';
 import topLocations from '../config/unused-data/topLocations';
@@ -16,7 +17,7 @@ import RecomendeItem from '../components/RecomendeItem';
 import topRatedSeller from '../config/unused-data/topRatedSeller';
 import RatedSellerItem from '../components/RatedSellerItem';
 
-const FeedScreen = ({navigation}) => {
+const FeedScreen = ({ navigation }) => {
   useEffect(() => {
     fetchFeed();
   }, []);
@@ -33,6 +34,7 @@ const FeedScreen = ({navigation}) => {
   const goToListingsScreen = id => {
     // TODO: navigate to listings screen
     console.log('handle navigation to listings screen... where id=', id);
+
   };
   const goToUserDetailScreen = id => {
     // TODO: goto user detail screen
@@ -44,6 +46,7 @@ const FeedScreen = ({navigation}) => {
       'handle navigation to list item details screen... where id=',
       id,
     );
+    navigation.navigate(routes.APP_ROUTES.LISTING_DETAILS, { id: id });
   };
 
   return (
@@ -112,14 +115,14 @@ const FeedScreen = ({navigation}) => {
           style={styles.sectionHeaderText}
         />
         <FlatList
-          ListHeaderComponent={<View style={{height: 10, width: 10}} />}
+          ListHeaderComponent={<View style={{ height: 10, width: 10 }} />}
           data={topLocations}
           showsHorizontalScrollIndicator={false}
           horizontal={true}
-          keyExtractor={({id}) => id.toString()}
-          ItemSeparatorComponent={<View style={{marginHorizontal: 20}} />}
-          renderItem={({item}) => <TopLoationItem data={item} />}
-          ListFooterComponent={<View style={{height: 10, width: 10}} />}
+          keyExtractor={({ id }) => id.toString()}
+          ItemSeparatorComponent={<View style={{ marginHorizontal: 20 }} />}
+          renderItem={({ item }) => <TopLoationItem data={item} />}
+          ListFooterComponent={<View style={{ height: 10, width: 10 }} />}
         />
       </View>
       {/* explore nearby property section */}
@@ -132,7 +135,7 @@ const FeedScreen = ({navigation}) => {
             marginBottom: 10,
           }}>
           <AppText
-            style={{...styles.sectionHeaderText, marginBottom: 0}}
+            style={{ ...styles.sectionHeaderText, marginBottom: 0 }}
             text="Explore nearby properties"
           />
           <AppText
@@ -174,7 +177,7 @@ const FeedScreen = ({navigation}) => {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           data={recomendation}
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <RecomendeItem
               onPress={() => goToListItemDetailScreen(item.id)}
               key={index.toString()}
@@ -191,7 +194,7 @@ const FeedScreen = ({navigation}) => {
           data={topRatedSeller}
           showsHorizontalScrollIndicator={false}
           horizontal={true}
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <RatedSellerItem
               onPress={() => goToUserDetailScreen(item.id)}
               key={index.toString()}
